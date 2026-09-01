@@ -1,0 +1,88 @@
+import { GeopoliticalZoneData } from "../types";
+
+export const NIGERIA_GEOPOLITICAL_ZONES: GeopoliticalZoneData[] = [
+  {
+    id: "north-west",
+    name: "North-West Zone",
+    shortCode: "NW",
+    states: ["Kano", "Kaduna", "Katsina", "Jigawa", "Sokoto", "Zamfara", "Kebbi"],
+    dominantLanguageContext: ["Hausa", "Fulfulde", "English", "Local dialects"],
+    activeIndices: {
+      consumerSentiment: 42,
+      priceSensitivity: 84,
+      politicalStability: 61,
+    },
+    currentPrimaryNarrative: "High price sensitivity across basic staples; strong preference for traditional trade over modern retail.",
+    keyIssues: ["Grain & staple prices", "Agricultural transit tariffs", "Currency liquidity", "Power grid stability"],
+  },
+  {
+    id: "north-east",
+    name: "North-East Zone",
+    shortCode: "NE",
+    states: ["Borno", "Yobe", "Adamawa", "Bauchi", "Gombe", "Taraba"],
+    dominantLanguageContext: ["Hausa", "Kanuri", "Fulfulde", "English"],
+    activeIndices: {
+      consumerSentiment: 46,
+      priceSensitivity: 78,
+      politicalStability: 54,
+    },
+    currentPrimaryNarrative: "Recovery momentum in trade routes; high interest in solar energy solutions and agro-processing investments.",
+    keyIssues: ["Logistics costs", "Solar tech adoption", "Fertilizer distribution", "Financial inclusion"],
+  },
+  {
+    id: "north-central",
+    name: "North-Central Zone (Middle Belt)",
+    shortCode: "NC",
+    states: ["FCT (Abuja)", "Plateau", "Benue", "Niger", "Nasarawa", "Kogi", "Kwara"],
+    dominantLanguageContext: ["English", "Nigerian Pidgin", "Hausa", "Nupe", "Tiv", "Yoruba"],
+    activeIndices: {
+      consumerSentiment: 59,
+      priceSensitivity: 68,
+      politicalStability: 69,
+    },
+    currentPrimaryNarrative: "Policy-driven economy in Abuja with high civil service sentiment sensitivity; agricultural corridors in Benue/Niger monitoring transport costs.",
+    keyIssues: ["Institutional policy shifts", "Housing rent inflation", "Food supply logistics", "Civil service wages"],
+  },
+  {
+    id: "south-west",
+    name: "South-West Zone",
+    shortCode: "SW",
+    states: ["Lagos", "Oyo", "Ogun", "Ondo", "Osun", "Ekiti"],
+    dominantLanguageContext: ["Yoruba", "English", "Nigerian Pidgin"],
+    activeIndices: {
+      consumerSentiment: 64,
+      priceSensitivity: 66,
+      politicalStability: 75,
+    },
+    currentPrimaryNarrative: "Tech, fintech, FMCG and brand competition peak zone; highest volume of digital discourse and influencer amplification.",
+    keyIssues: ["Transport and energy tariffs", "Fintech POS reliability", "FMCG shrinkflation", "Real estate premiums"],
+  },
+  {
+    id: "south-east",
+    name: "South-East Zone",
+    shortCode: "SE",
+    states: ["Anambra", "Enugu", "Imo", "Abia", "Ebonyi"],
+    dominantLanguageContext: ["Igbo", "English", "Nigerian Pidgin"],
+    activeIndices: {
+      consumerSentiment: 51,
+      priceSensitivity: 74,
+      politicalStability: 60,
+    },
+    currentPrimaryNarrative: "Wholesale commercial hubs (Onitsha, Aba) driving supply chain sentiment; strong merchant independence and digital remittance usage.",
+    keyIssues: ["Import clearance costs", "Wholesale credit terms", "Transport logistics", "Commercial security"],
+  },
+  {
+    id: "south-south",
+    name: "South-South Zone (Niger Delta)",
+    shortCode: "SS",
+    states: ["Rivers", "Delta", "Akwa Ibrom", "Bayelsa", "Cross River", "Edo"],
+    dominantLanguageContext: ["Nigerian Pidgin", "English", "Ijaw", "Edo", "Ibibio"],
+    activeIndices: {
+      consumerSentiment: 56,
+      priceSensitivity: 70,
+      politicalStability: 67,
+    },
+    currentPrimaryNarrative: "Energy sector, industrial services, and port logistics dominate corporate sentiment; high demand for reliable retail infrastructure.",
+    keyIssues: ["Energy transition & fuel prices", "Maritime freight costs", "Retail chain expansion", "State infrastructure spending"],
+  },
+];

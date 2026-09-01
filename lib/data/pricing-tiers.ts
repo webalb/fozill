@@ -1,0 +1,86 @@
+import { PricingTier } from "../types";
+
+export const PRICING_TIERS: PricingTier[] = [
+  {
+    id: "adhoc",
+    name: "Ad-Hoc Intelligence Brief",
+    layer: "Layer 1: Project-Based",
+    badge: "Fast Turnaround",
+    price: "₦500k – ₦2.0m",
+    period: "per dossier",
+    description: "A single, rigorous deep-dive intelligence dossier for specific events, crisis containment, brand health audits, or competitor reconnaissance.",
+    idealFor: "Brands handling an emerging crisis, product launches, or market-entry decisions.",
+    features: [
+      "Custom entity & competitor narrative mapping",
+      "Geopolitical perception breakdown across 6 zones",
+      "Driver account & influencer attribution audit",
+      "Prescriptive C-suite strategic response memo",
+      "Executive PDF delivery within 48–72 hours",
+      "One 45-minute confidential analyst debrief call"
+    ],
+    ctaText: "Commission a Brief",
+    highlighted: false,
+  },
+  {
+    id: "retainer-starter",
+    name: "Executive Intelligence Retainer",
+    layer: "Layer 2: Monthly Retainer",
+    badge: "Most Popular",
+    price: "₦750,000",
+    period: "per month",
+    description: "Continuous surveillance of your brand, key executives, direct competitors, and emerging sector risks with weekly synthesized intelligence briefings.",
+    idealFor: "CMOs, Brand Directors, Political Offices, and Fintech leadership teams.",
+    features: [
+      "Daily executive intelligence email digest (<3 min read)",
+      "Weekly synthesized strategic dossier & trend velocity",
+      "Real-time crisis alert triggers (<15 min alert window)",
+      "Multi-lingual narrative tracking (Hausa, Pidgin, Yoruba, Igbo)",
+      "Continuous competitor radar (pricing, complaints, campaigns)",
+      "Monthly 60-min boardroom advisory review call",
+      "Dedicated senior intelligence analyst lead"
+    ],
+    ctaText: "Start Retainer Onboarding",
+    highlighted: true,
+  },
+  {
+    id: "enterprise-platform",
+    name: "Continuous Intelligence Platform",
+    layer: "Layer 3: Enterprise SaaS",
+    badge: "Enterprise Access",
+    price: "₦1.8m – ₦4.5m",
+    period: "per month / billed quarterly",
+    description: "Full institutional deployment with multi-user dashboard access, real-time alert streams, API feeds, custom NLP models, and historical intelligence archives.",
+    idealFor: "Tier-1 Conglomerates, Telecoms, Commercial Banks, and Public Institutions.",
+    features: [
+      "Unlimited team seats with role-based access control",
+      "Live interactive query terminal ('Intelligence-on-Demand')",
+      "Custom ingestion pipelines (Social, News, Corporate filings)",
+      "REST API access for internal BI / data lake sync",
+      "Sub-national geo-tracking across all 36 states + FCT",
+      "Custom proprietary fine-tuned entity classification",
+      "Quarterly onsite executive war-room presentation"
+    ],
+    ctaText: "Request Enterprise Demo",
+    highlighted: false,
+  },
+  {
+    id: "strategic-advisory",
+    name: "Strategic Advisory & War Room",
+    layer: "Layer 4: High-Stakes Advisory",
+    badge: "Bespoke",
+    price: "Custom",
+    period: "retainer + milestone fee",
+    description: "Direct strategic counsel for high-stakes corporate restructurings, 2027 election campaigns, M&A perception due diligence, and regulatory navigation.",
+    idealFor: "Boards of Directors, Presidential/Gubernatorial Committees, and PE/VC Partners.",
+    features: [
+      "Dedicated Senior Intelligence Principal assignment",
+      "Real-time counter-narrative strategy formulation",
+      "Voter perception & grassroots sentiment micro-targeting",
+      "Weekly private boardroom briefing presentations",
+      "Dark social & closed network narrative trajectory modeling",
+      "24/7 emergency response war-room availability"
+    ],
+    ctaText: "Engage Advisory Team",
+    highlighted: false,
+  },
+];
