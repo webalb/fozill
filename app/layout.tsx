@@ -3,6 +3,7 @@ import { Manrope, Source_Serif_4, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navigation/navbar";
 import { Footer } from "@/components/navigation/footer";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -54,12 +55,22 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${manrope.variable} ${sourceSerif.variable} ${jetbrainsMono.variable} dark`}
+      className={`${manrope.variable} ${sourceSerif.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
     >
-      <body className="bg-[#111315] text-[#F5F5F2] font-body antialiased selection:bg-[#D8A83E] selection:text-[#111315] min-h-screen flex flex-col">
-        <Navbar />
-        <main className="flex-grow pt-20">{children}</main>
-        <Footer />
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("fozill-theme");if(!t){t=window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";}document.documentElement.classList.toggle("dark",t==="dark");document.documentElement.classList.add("theme-transition");setTimeout(function(){document.documentElement.classList.remove("theme-transition");},400);}catch(e){}})();`,
+          }}
+        />
+      </head>
+      <body className="bg-background text-foreground font-body antialiased min-h-screen flex flex-col">
+        <ThemeProvider>
+          <Navbar />
+          <main className="flex-grow pt-20">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

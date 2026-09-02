@@ -17,12 +17,12 @@ export function NewsletterForm() {
           name="email"
           required
           placeholder="Your corporate email"
-          className="flex-1 px-4 py-3 rounded-lg bg-[#111315] border border-[#2C3138] text-[#F5F5F2] placeholder:text-[#F5F5F2]/40 font-body text-sm focus:outline-none focus:border-[#D8A83E] focus:ring-1 focus:ring-[#D8A83E]/40"
+          className="flex-1 px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder:text-foreground/40 font-body text-sm focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold/40"
         />
         <button
           type="submit"
           disabled={pending}
-          className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-[#D8A83E] text-[#111315] font-heading font-bold text-sm hover:bg-[#F3CB6C] transition-all disabled:opacity-50"
+          className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gold text-background font-heading font-bold text-sm hover:bg-gold-hover transition-all disabled:opacity-50"
         >
           <span>{pending ? "Subscribing..." : "Subscribe"}</span>
           <ArrowRight className="w-4 h-4" />
@@ -30,7 +30,7 @@ export function NewsletterForm() {
       </div>
       <p
         className={`mt-3 font-mono text-xs ${
-          state.success ? "text-[#10B981]" : state.message ? "text-[#EF4444]" : "text-[#F5F5F2]/40"
+          state.success ? "text-positive" : state.message ? "text-negative" : "text-foreground/40"
         }`}
         role={state.message ? "status" : undefined}
       >

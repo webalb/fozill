@@ -56,22 +56,22 @@ export default function Home() {
   const zones = NIGERIA_GEOPOLITICAL_ZONES;
 
   return (
-    <div className="text-[#F5F5F2]">
+    <div>
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(216,168,62,0.08),transparent_60%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgb(var(--gold)_/_0.08),transparent_60%)] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 lg:pt-24 pb-16 lg:pb-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#D8A83E]/30 bg-[#D8A83E]/10 font-mono text-[11px] text-[#D8A83E] uppercase tracking-wider">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#D8A83E] animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gold/30 bg-gold/10 font-mono text-[11px] text-gold uppercase tracking-wider">
+                <span className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse" />
                 Nigeria Strategic Intelligence Desk
               </div>
               <h1 className="font-heading font-extrabold text-4xl sm:text-5xl xl:text-6xl leading-[1.05] tracking-tight">
                 Turn Nigeria&apos;s Public Signals Into{" "}
                 <span className="gold-gradient-text">Strategic Decisions.</span>
               </h1>
-              <p className="font-body text-lg text-[#F5F5F2]/80 leading-relaxed max-w-xl">
+              <p className="font-body text-lg text-foreground/80 leading-relaxed max-w-xl">
                 We monitor public discourse, digital media, regional sentiment, and institutional
                 data across Nigeria to tell CEOs, CMOs, and political leaders what is happening,
                 why, and what to do next.
@@ -79,25 +79,25 @@ export default function Home() {
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-[#D8A83E] text-[#111315] font-heading font-bold text-sm hover:bg-[#F3CB6C] transition-all shadow-lg shadow-[#D8A83E]/20"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-gold text-background font-heading font-bold text-sm hover:bg-gold-hover transition-all shadow-lg shadow-gold/20"
                 >
                   <span>Request an Intelligence Brief</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href="/briefs"
-                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg border border-[#2C3138] bg-[#181B1E]/60 text-[#F5F5F2] font-heading font-medium text-sm hover:border-[#D8A83E]/50 hover:bg-[#202428] transition-all"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg border border-border bg-surface/60 text-foreground font-heading font-medium text-sm hover:border-gold/50 hover:bg-elevated transition-all"
                 >
-                  <Lock className="w-4 h-4 text-[#D8A83E]" />
+                  <Lock className="w-4 h-4 text-gold" />
                   <span>View Sample Intelligence Dossier</span>
                 </Link>
               </div>
-              <div className="flex items-center gap-6 pt-2 text-xs font-mono text-[#F5F5F2]/50">
+              <div className="flex items-center gap-6 pt-2 text-xs font-mono text-foreground/50">
                 <span className="flex items-center gap-1.5">
-                  <Activity className="w-3.5 h-3.5 text-[#10B981]" /> 1.2M signals / day
+                  <Activity className="w-3.5 h-3.5 text-positive" /> 1.2M signals / day
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#D8A83E]" /> OSINT &amp; NDPR compliant
+                  <ShieldCheck className="w-3.5 h-3.5 text-gold" /> OSINT &amp; NDPR compliant
                 </span>
               </div>
             </div>
@@ -111,7 +111,7 @@ export default function Home() {
       {/* PILLARS */}
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="font-mono text-xs text-[#D8A83E] uppercase tracking-widest mb-3">
+          <div className="font-mono text-xs text-gold uppercase tracking-widest mb-3">
             One Engine. Three Strategic Pillars.
           </div>
           <h2 className="font-heading font-bold text-3xl sm:text-4xl tracking-tight">
@@ -123,24 +123,22 @@ export default function Home() {
             <Link
               key={p.id}
               href={p.href}
-              className="group flex flex-col rounded-2xl border border-[#2C3138] bg-[#181B1E]/80 p-7 hover:border-[#D8A83E]/50 hover:bg-[#202428] transition-all"
+              className="group flex flex-col card-panel bg-surface/80 p-7 hover:border-gold/50 hover:bg-elevated transition-all"
             >
               <div className="flex items-center justify-between mb-4">
-                <span className="font-mono text-[10px] uppercase tracking-widest text-[#D8A83E] bg-[#D8A83E]/10 border border-[#D8A83E]/30 px-2 py-1 rounded">
-                  {p.tag}
-                </span>
-                <ArrowRight className="w-4 h-4 text-[#F5F5F2]/30 group-hover:text-[#D8A83E] group-hover:translate-x-1 transition-all" />
+                <span className="gold-chip">{p.tag}</span>
+                <ArrowRight className="w-4 h-4 text-foreground/30 group-hover:text-gold group-hover:translate-x-1 transition-all" />
               </div>
-              <h3 className="font-heading font-bold text-lg mb-2 group-hover:text-[#D8A83E] transition-colors">
+              <h3 className="font-heading font-bold text-lg mb-2 group-hover:text-gold transition-colors">
                 {p.title}
               </h3>
-              <p className="font-body text-sm text-[#F5F5F2]/70 leading-relaxed mb-5 flex-grow">
+              <p className="font-body text-sm text-foreground/70 leading-relaxed mb-5 flex-grow">
                 {p.description}
               </p>
               <ul className="space-y-2">
                 {p.points.map((pt) => (
-                  <li key={pt} className="flex items-start gap-2 font-mono text-xs text-[#F5F5F2]/60">
-                    <ChevronRight className="w-3.5 h-3.5 text-[#D8A83E] shrink-0 mt-0.5" />
+                  <li key={pt} className="flex items-start gap-2 font-mono text-xs text-foreground/60">
+                    <ChevronRight className="w-3.5 h-3.5 text-gold shrink-0 mt-0.5" />
                     {pt}
                   </li>
                 ))}
@@ -151,7 +149,7 @@ export default function Home() {
       </section>
 
       {/* SAMPLE DOSSIER */}
-      <section className="py-20 border-y border-[#2C3138] bg-[#14171A]/40">
+      <section className="py-20 border-y border-border bg-card/40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 order-2 lg:order-1">
@@ -166,13 +164,13 @@ export default function Home() {
               />
             </div>
             <div className="space-y-6 order-1 lg:order-2">
-              <div className="font-mono text-xs text-[#D8A83E] uppercase tracking-widest">
+              <div className="font-mono text-xs text-gold uppercase tracking-widest">
                 Show, Don&apos;t Tell
               </div>
               <h2 className="font-heading font-bold text-3xl sm:text-4xl tracking-tight">
                 This is what an Executive Intelligence Brief looks like.
               </h2>
-              <p className="font-body text-base text-[#F5F5F2]/75 leading-relaxed">
+              <p className="font-body text-base text-foreground/75 leading-relaxed">
                 We don&apos;t sell dashboards and raw data dumps. We deliver synthesized, prescriptive
                 intelligence: brand health, shift velocity, dominant narratives, geopolitical
                 distribution, and a recommended strategic response — presented the way a boardroom
@@ -185,15 +183,15 @@ export default function Home() {
                   "Narrative clustering & influencer attribution",
                   "Prescriptive C-suite strategic recommendation",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 font-body text-sm text-[#F5F5F2]/80">
-                    <ShieldCheck className="w-4 h-4 text-[#D8A83E] shrink-0 mt-0.5" />
+                  <li key={item} className="flex items-start gap-2 font-body text-sm text-foreground/80">
+                    <ShieldCheck className="w-4 h-4 text-gold shrink-0 mt-0.5" />
                     {item}
                   </li>
                 ))}
               </ul>
               <Link
                 href="/briefs"
-                className="inline-flex items-center gap-2 text-[#D8A83E] font-heading font-semibold text-sm hover:text-[#F3CB6C] transition-colors"
+                className="inline-flex items-center gap-2 text-gold font-heading font-semibold text-sm hover:text-gold-hover transition-colors"
               >
                 Browse all sample dossiers <ArrowRight className="w-4 h-4" />
               </Link>
@@ -205,13 +203,13 @@ export default function Home() {
       {/* GEOPOLITICAL ZONES */}
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mb-12">
-          <div className="font-mono text-xs text-[#D8A83E] uppercase tracking-widest mb-3">
+          <div className="font-mono text-xs text-gold uppercase tracking-widest mb-3">
             The Nigeria Moat
           </div>
           <h2 className="font-heading font-bold text-3xl sm:text-4xl tracking-tight">
             6 Geopolitical Zones. Widely Divergent Realities.
           </h2>
-          <p className="font-body text-base text-[#F5F5F2]/75 mt-4 leading-relaxed">
+          <p className="font-body text-base text-foreground/75 mt-4 leading-relaxed">
             A generic Western sentiment model misreads Nigerian context. We track how perception
             diverges across Kano, Kaduna, Abuja, Lagos, Onitsha, and Port Harcourt — in English,
             Hausa, Yoruba, Igbo, and Pidgin.
@@ -219,32 +217,30 @@ export default function Home() {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {zones.map((z) => (
-            <div key={z.id} className="rounded-xl border border-[#2C3138] bg-[#181B1E]/80 p-5">
+            <div key={z.id} className="rounded-xl border border-border bg-surface/80 p-5">
               <div className="flex items-center justify-between mb-3">
                 <span className="font-heading font-semibold text-sm">{z.name}</span>
-                <span className="font-mono text-[10px] text-[#D8A83E] bg-[#D8A83E]/10 border border-[#D8A83E]/30 px-2 py-0.5 rounded">
-                  {z.shortCode}
-                </span>
+                <span className="gold-chip">{z.shortCode}</span>
               </div>
-              <div className="flex justify-between text-[10px] font-mono text-[#F5F5F2]/50 mb-2">
+              <div className="flex justify-between text-[10px] font-mono text-foreground/50 mb-2">
                 <span>Price Sens</span>
-                <span className="text-[#EF4444]">{z.activeIndices.priceSensitivity}</span>
+                <span className="text-negative">{z.activeIndices.priceSensitivity}</span>
               </div>
-              <div className="h-1.5 w-full bg-[#202428] rounded-full mb-1 overflow-hidden">
+              <div className="h-1.5 w-full bg-elevated rounded-full mb-1 overflow-hidden">
                 <div
                   className="h-full rounded-full"
                   style={{
                     width: `${z.activeIndices.priceSensitivity}%`,
                     backgroundColor:
                       z.activeIndices.priceSensitivity > 75
-                        ? "#EF4444"
+                        ? "rgb(var(--negative))"
                         : z.activeIndices.priceSensitivity > 65
-                        ? "#D8A83E"
-                        : "#10B981",
+                        ? "rgb(var(--gold))"
+                        : "rgb(var(--positive))",
                   }}
                 />
               </div>
-              <p className="font-body text-xs text-[#F5F5F2]/65 leading-relaxed mt-3">
+              <p className="font-body text-xs text-foreground/65 leading-relaxed mt-3">
                 {z.currentPrimaryNarrative}
               </p>
             </div>
@@ -253,10 +249,10 @@ export default function Home() {
       </section>
 
       {/* PRICING SNAPSHOT */}
-      <section className="py-20 border-t border-[#2C3138] bg-[#14171A]/40">
+      <section className="py-20 border-t border-border bg-card/40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-12">
-            <div className="font-mono text-xs text-[#D8A83E] uppercase tracking-widest mb-3">
+            <div className="font-mono text-xs text-gold uppercase tracking-widest mb-3">
               Engagement Ladder
             </div>
             <h2 className="font-heading font-bold text-3xl sm:text-4xl tracking-tight">
@@ -269,32 +265,30 @@ export default function Home() {
                 key={tier.id}
                 className={`rounded-2xl border p-7 ${
                   tier.highlighted
-                    ? "border-[#D8A83E] bg-[#202428] shadow-xl shadow-[#D8A83E]/10"
-                    : "border-[#2C3138] bg-[#181B1E]/80"
+                    ? "border-gold bg-elevated shadow-xl shadow-gold/10"
+                    : "border-border bg-surface/80"
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-[#F5F5F2]/50">
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-foreground/50">
                     {tier.layer}
                   </span>
                   {tier.badge && (
-                    <span className="font-mono text-[10px] text-[#D8A83E] px-2 py-0.5 bg-[#D8A83E]/10 border border-[#D8A83E]/30 rounded">
-                      {tier.badge}
-                    </span>
+                    <span className="gold-chip">{tier.badge}</span>
                   )}
                 </div>
                 <h3 className="font-heading font-bold text-lg mb-1">{tier.name}</h3>
                 <div className="mb-5">
-                  <span className="font-heading font-extrabold text-2xl text-[#D8A83E]">{tier.price}</span>
-                  <span className="font-mono text-xs text-[#F5F5F2]/50 block mt-0.5">{tier.period}</span>
+                  <span className="font-heading font-extrabold text-2xl text-gold">{tier.price}</span>
+                  <span className="font-mono text-xs text-foreground/50 block mt-0.5">{tier.period}</span>
                 </div>
-                <p className="font-body text-xs text-[#F5F5F2]/70 leading-relaxed mb-4">
+                <p className="font-body text-xs text-foreground/70 leading-relaxed mb-4">
                   {tier.description}
                 </p>
                 <Link
                   href="/pricing"
                   className={`inline-flex items-center gap-2 text-xs font-heading font-bold ${
-                    tier.highlighted ? "text-[#D8A83E]" : "text-[#F5F5F2]/80 hover:text-white"
+                    tier.highlighted ? "text-gold" : "text-foreground/80 hover:text-foreground"
                   } transition-colors`}
                 >
                   {tier.ctaText} <ArrowRight className="w-3.5 h-3.5" />
@@ -307,16 +301,16 @@ export default function Home() {
 
       {/* LEAD MAGNET */}
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="rounded-3xl border border-[#D8A83E]/30 bg-gradient-to-br from-[#202428] to-[#14171A] p-10 lg:p-14 text-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(216,168,62,0.1),transparent_60%)] pointer-events-none" />
+        <div className="rounded-3xl border border-gold/30 bg-gradient-to-br from-elevated to-card p-10 lg:p-14 text-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgb(var(--gold)_/_0.1),transparent_60%)] pointer-events-none" />
           <div className="relative">
-            <div className="font-mono text-xs text-[#D8A83E] uppercase tracking-widest mb-3">
+            <div className="font-mono text-xs text-gold uppercase tracking-widest mb-3">
               Weekly Free Intelligence
             </div>
             <h2 className="font-heading font-bold text-3xl sm:text-4xl tracking-tight mb-4">
               The Nigeria Intelligence Digest
             </h2>
-            <p className="font-body text-base text-[#F5F5F2]/75 max-w-xl mx-auto mb-8 leading-relaxed">
+            <p className="font-body text-base text-foreground/75 max-w-xl mx-auto mb-8 leading-relaxed">
               Read by leaders in Banking, FMCG, and Governance. Each week, the sharpest signals
               across Nigeria&apos;s commercial, political, and economic landscape — distilled.
             </p>

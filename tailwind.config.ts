@@ -11,38 +11,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: {
-          DEFAULT: "#111315",
-          dark: "#111315",
-          light: "#F5F5F2",
-        },
-        surface: {
-          dark: "#181B1E",
-          elevated: "#202428",
-          card: "#14171A",
-        },
-        border: {
-          DEFAULT: "#2C3138",
-          dark: "#2C3138",
-          light: "#E4E4DC",
-          gold: "rgba(216, 168, 62, 0.3)",
-        },
+        background: "rgb(var(--bg) / <alpha-value>)",
+        foreground: "rgb(var(--fg) / <alpha-value>)",
+        surface: "rgb(var(--surface) / <alpha-value>)",
+        elevated: "rgb(var(--elevated) / <alpha-value>)",
+        card: "rgb(var(--card) / <alpha-value>)",
+        border: "rgb(var(--border) / <alpha-value>)",
+        footer: "rgb(var(--footer) / <alpha-value>)",
+        muted: "rgb(var(--muted) / <alpha-value>)",
         gold: {
-          DEFAULT: "#D8A83E",
-          hover: "#F3CB6C",
-          muted: "rgba(216, 168, 62, 0.15)",
-          glow: "rgba(216, 168, 62, 0.25)",
+          DEFAULT: "rgb(var(--gold) / <alpha-value>)",
+          hover: "rgb(var(--gold-hover) / <alpha-value>)",
         },
-        editorial: {
-          paper: "#F5F5F2",
-          ink: "#111315",
-          muted: "#6B7280",
-        },
-        status: {
-          positive: "#10B981",
-          neutral: "#8E95A2",
-          negative: "#EF4444",
-        },
+        positive: "rgb(var(--positive) / <alpha-value>)",
+        neutral: "rgb(var(--neutral) / <alpha-value>)",
+        negative: "rgb(var(--negative) / <alpha-value>)",
       },
       fontFamily: {
         heading: ["var(--font-heading)", "Manrope", "sans-serif"],

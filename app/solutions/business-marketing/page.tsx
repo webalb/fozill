@@ -51,10 +51,10 @@ export default function BusinessMarketingPage() {
           {useCases.map((uc) => {
             const Icon = uc.icon;
             return (
-              <div key={uc.title} className="rounded-2xl border border-[#2C3138] bg-[#181B1E]/80 p-7">
-                <Icon className="w-6 h-6 text-[#D8A83E] mb-4" />
+              <div key={uc.title} className="rounded-2xl border border-border bg-surface/80 p-7">
+                <Icon className="w-6 h-6 text-gold mb-4" />
                 <h2 className="font-heading font-bold text-lg mb-2">{uc.title}</h2>
-                <p className="font-body text-sm text-[#F5F5F2]/70 leading-relaxed">{uc.body}</p>
+                <p className="font-body text-sm text-foreground/70 leading-relaxed">{uc.body}</p>
               </div>
             );
           })}
@@ -72,7 +72,7 @@ export default function BusinessMarketingPage() {
             recommendedAction={dossier.recommendedAction}
           />
           <div className="space-y-6">
-            <div className="font-mono text-xs text-[#D8A83E] uppercase tracking-widest">
+            <div className="font-mono text-xs text-gold uppercase tracking-widest">
               Deliverables
             </div>
             <h2 className="font-heading font-bold text-3xl tracking-tight">
@@ -82,16 +82,16 @@ export default function BusinessMarketingPage() {
               {deliverables.map((d) => (
                 <li
                   key={d}
-                  className="flex items-start gap-2 font-body text-sm text-[#F5F5F2]/80 border-b border-[#2C3138] pb-3"
+                  className="flex items-start gap-2 font-body text-sm text-foreground/80 border-b border-border pb-3"
                 >
-                  <ArrowRight className="w-4 h-4 text-[#D8A83E] shrink-0 mt-0.5" />
+                  <ArrowRight className="w-4 h-4 text-gold shrink-0 mt-0.5" />
                   {d}
                 </li>
               ))}
             </ul>
             <Link
               href="/pricing"
-              className="inline-flex items-center gap-2 text-[#D8A83E] font-heading font-semibold text-sm hover:text-[#F3CB6C] transition-colors"
+              className="inline-flex items-center gap-2 text-gold font-heading font-semibold text-sm hover:text-gold-hover transition-colors"
             >
               View retainer pricing <ArrowRight className="w-4 h-4" />
             </Link>

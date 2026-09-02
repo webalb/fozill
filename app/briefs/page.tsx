@@ -33,12 +33,12 @@ export default function BriefsPage() {
                 recommendedAction={d.recommendedAction}
               />
               <div className="flex items-center justify-between px-2">
-                <span className="font-mono text-xs text-[#F5F5F2]/50">
+                <span className="font-mono text-xs text-foreground/50">
                   {d.date} // {d.sector}
                 </span>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-1.5 text-xs font-heading font-semibold text-[#D8A83E] hover:text-[#F3CB6C] transition-colors"
+                  className="link-gold"
                 >
                   Request similar <ArrowRight className="w-3.5 h-3.5" />
                 </Link>

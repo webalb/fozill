@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Network, Database, Brain, Sparkles, MapPin, MessageSquare, AlertTriangle } from "lucide-react";
+import { Network, Database, Brain, Sparkles, MapPin, MessageSquare } from "lucide-react";
 
 export function IntelligenceGraphMock() {
   const [activeNode, setActiveNode] = useState<string>("narrative");
@@ -34,27 +34,27 @@ export function IntelligenceGraphMock() {
   };
 
   return (
-    <div className="relative w-full rounded-2xl border border-[#2C3138] bg-[#14171A] p-6 lg:p-8 shadow-2xl overflow-hidden">
+    <div className="relative w-full rounded-2xl border border-border bg-card p-6 lg:p-8 shadow-2xl overflow-hidden">
       {/* Background visual grid lines */}
-      <div className="absolute inset-0 bg-[radial-gradient(#2C3138_1px,transparent_1px)] [background-size:16px_16px] opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(rgb(var(--border))_1px,transparent_1px)] [background-size:16px_16px] opacity-30 pointer-events-none" />
 
       {/* Header bar */}
-      <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-[#2C3138] gap-4">
+      <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between pb-6 border-b border-border gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <Network className="w-4 h-4 text-[#D8A83E]" />
-            <span className="font-mono text-xs font-bold uppercase tracking-wider text-[#D8A83E]">
+            <Network className="w-4 h-4 text-gold" />
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-gold">
               FOZILL INTELLIGENCE GRAPH ENGINE
             </span>
           </div>
-          <p className="font-body text-xs text-[#F5F5F2]/60 mt-1">
+          <p className="font-body text-xs text-foreground/60 mt-1">
             Real-time multi-dimensional synthesis: Entities → Narratives → Drivers → Geographies
           </p>
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-[#10B981] animate-pulse" />
-          <span className="font-mono text-[11px] text-[#F5F5F2]/70">GRAPH LIVE • 1.2M SIGNALS/DAY</span>
+          <span className="h-2 w-2 rounded-full bg-positive animate-pulse" />
+          <span className="font-mono text-[11px] text-foreground/70">GRAPH LIVE • 1.2M SIGNALS/DAY</span>
         </div>
       </div>
 
@@ -74,17 +74,17 @@ export function IntelligenceGraphMock() {
               onClick={() => setActiveNode(item.id)}
               className={`p-3.5 rounded-xl border text-left transition-all ${
                 isActive
-                  ? "bg-[#202428] border-[#D8A83E] shadow-lg shadow-[#D8A83E]/10"
-                  : "bg-[#181B1E] border-[#2C3138] hover:border-[#D8A83E]/50 hover:bg-[#1C2024]"
+                  ? "bg-elevated border-gold shadow-lg shadow-gold/10"
+                  : "bg-surface border-border hover:border-gold/50 hover:bg-elevated"
               }`}
             >
               <div className="flex items-center justify-between mb-1.5">
-                <Icon className={`w-4 h-4 ${isActive ? "text-[#D8A83E]" : "text-[#F5F5F2]/50"}`} />
-                {isActive && <Sparkles className="w-3.5 h-3.5 text-[#D8A83E] animate-pulse" />}
+                <Icon className={`w-4 h-4 ${isActive ? "text-gold" : "text-foreground/50"}`} />
+                {isActive && <Sparkles className="w-3.5 h-3.5 text-gold animate-pulse" />}
               </div>
               <span
                 className={`font-heading text-xs font-semibold block ${
-                  isActive ? "text-[#D8A83E]" : "text-[#F5F5F2]"
+                  isActive ? "text-gold" : "text-foreground"
                 }`}
               >
                 {item.name}
@@ -95,25 +95,25 @@ export function IntelligenceGraphMock() {
       </div>
 
       {/* Active Node Detail Card */}
-      <div className="relative z-10 rounded-xl border border-[#2C3138] bg-[#181B1E]/95 p-5 backdrop-blur-md">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 pb-3 border-b border-[#2C3138]">
-          <h4 className="font-heading font-bold text-sm text-[#F5F5F2] flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#D8A83E]" />
+      <div className="relative z-10 rounded-xl border border-border bg-surface/95 p-5 backdrop-blur-md">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-2 pb-3 border-b border-border">
+          <h4 className="font-heading font-bold text-sm text-foreground flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-gold" />
             {nodeDetails[activeNode].title}
           </h4>
-          <span className="font-mono text-[11px] text-[#D8A83E]/90 bg-[#D8A83E]/10 px-2 py-0.5 rounded border border-[#D8A83E]/30">
+          <span className="font-mono text-[11px] text-gold bg-gold/10 px-2 py-0.5 rounded border border-gold/30">
             {nodeDetails[activeNode].subtitle}
           </span>
         </div>
 
-        <p className="font-body text-sm text-[#F5F5F2]/80 mt-3 leading-relaxed">
+        <p className="font-body text-sm text-foreground/80 mt-3 leading-relaxed">
           {nodeDetails[activeNode].quote}
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-4 pt-3 border-t border-[#2C3138]">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-4 pt-3 border-t border-border">
           {nodeDetails[activeNode].metrics.map((m, idx) => (
-            <div key={idx} className="bg-[#202428] px-3 py-2 rounded-lg border border-[#2C3138]">
-              <span className="font-mono text-xs text-[#D8A83E] font-medium block">
+            <div key={idx} className="bg-elevated px-3 py-2 rounded-lg border border-border">
+              <span className="font-mono text-xs text-gold font-medium block">
                 {m}
               </span>
             </div>

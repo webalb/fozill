@@ -41,45 +41,45 @@ export default function EconomicIntelligencePage() {
           {capabilities.map((c) => {
             const Icon = c.icon;
             return (
-              <div key={c.title} className="rounded-2xl border border-[#2C3138] bg-[#181B1E]/80 p-7">
-                <Icon className="w-6 h-6 text-[#D8A83E] mb-4" />
+              <div key={c.title} className="rounded-2xl border border-border bg-surface/80 p-7">
+                <Icon className="w-6 h-6 text-gold mb-4" />
                 <h2 className="font-heading font-bold text-lg mb-2">{c.title}</h2>
-                <p className="font-body text-sm text-[#F5F5F2]/70 leading-relaxed">{c.body}</p>
+                <p className="font-body text-sm text-foreground/70 leading-relaxed">{c.body}</p>
               </div>
             );
           })}
         </div>
 
         {/* NCPI highlight */}
-        <div className="mt-20 rounded-3xl border border-[#D8A83E]/30 bg-gradient-to-br from-[#202428] to-[#14171A] overflow-hidden">
+        <div className="mt-20 rounded-3xl border border-gold/30 bg-gradient-to-br from-elevated to-card overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
             <div className="p-10 lg:p-14 space-y-6">
-              <div className="font-mono text-xs text-[#D8A83E] uppercase tracking-widest">
+              <div className="font-mono text-xs text-gold uppercase tracking-widest">
                 Featured Public Index
               </div>
               <h2 className="font-heading font-bold text-3xl tracking-tight">{index.title}</h2>
-              <p className="font-body text-base text-[#F5F5F2]/75 leading-relaxed">{index.summary}</p>
+              <p className="font-body text-base text-foreground/75 leading-relaxed">{index.summary}</p>
               <div className="flex items-center gap-8">
                 <div>
-                  <div className="font-mono text-4xl font-bold text-[#D8A83E]">{index.currentValue}</div>
-                  <div className="font-mono text-xs text-[#F5F5F2]/50 mt-1">Current Value</div>
+                  <div className="font-mono text-4xl font-bold text-gold">{index.currentValue}</div>
+                  <div className="font-mono text-xs text-foreground/50 mt-1">Current Value</div>
                 </div>
                 <div>
-                  <div className="font-mono text-lg font-semibold text-[#EF4444]">{index.changeValue}</div>
-                  <div className="font-mono text-xs text-[#F5F5F2]/50 mt-1">vs Last Month</div>
+                  <div className="font-mono text-lg font-semibold text-negative">{index.changeValue}</div>
+                  <div className="font-mono text-xs text-foreground/50 mt-1">vs Last Month</div>
                 </div>
               </div>
               <ul className="space-y-2">
                 {index.keyTakeaways.map((t) => (
-                  <li key={t} className="flex items-start gap-2 font-body text-sm text-[#F5F5F2]/80">
-                    <ArrowRight className="w-4 h-4 text-[#D8A83E] shrink-0 mt-0.5" />
+                  <li key={t} className="flex items-start gap-2 font-body text-sm text-foreground/80">
+                    <ArrowRight className="w-4 h-4 text-gold shrink-0 mt-0.5" />
                     {t}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="bg-[#14171A]/60 border-t lg:border-t-0 lg:border-l border-[#2C3138] p-10 lg:p-14">
-              <div className="font-mono text-xs text-[#F5F5F2]/50 uppercase tracking-widest mb-8">
+            <div className="bg-card/60 border-t lg:border-t-0 lg:border-l border-border p-10 lg:p-14">
+              <div className="font-mono text-xs text-foreground/50 uppercase tracking-widest mb-8">
                 6-Month Trajectory
               </div>
               <div className="flex items-end justify-between gap-2 h-48">
@@ -92,7 +92,7 @@ export default function EconomicIntelligencePage() {
                         title={`${dp.label}: ${dp.value}`}
                       />
                     </div>
-                    <span className="font-mono text-[9px] text-[#F5F5F2]/50">{dp.label}</span>
+                    <span className="font-mono text-[9px] text-foreground/50">{dp.label}</span>
                   </div>
                 ))}
               </div>

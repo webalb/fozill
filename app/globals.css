@@ -2,31 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #111315;
-  --foreground: #F5F5F2;
-  --gold: #D8A83E;
-}
+@layer base {
+  :root {
+    --bg: 245 245 242;
+    --fg: 17 19 21;
+    --surface: 255 255 255;
+    --elevated: 240 239 235;
+    --card: 255 255 255;
+    --border: 228 228 220;
+    --footer: 232 232 228;
+    --muted: 107 114 128;
+    --gold: 216 168 62;
+    --gold-hover: 243 203 108;
+    --positive: 16 185 129;
+    --neutral: 142 149 162;
+    --negative: 239 68 68;
+  }
 
-body {
-  background-color: #111315;
-  color: #F5F5F2;
-  font-family: var(--font-body), serif;
-  overflow-x: hidden;
-}
+  .dark {
+    --bg: 17 19 21;
+    --fg: 245 245 242;
+    --surface: 24 27 30;
+    --elevated: 32 36 40;
+    --card: 20 23 26;
+    --border: 44 49 56;
+    --footer: 12 14 16;
+    --muted: 107 114 128;
+    --gold: 216 168 62;
+    --gold-hover: 243 203 108;
+    --positive: 16 185 129;
+    --neutral: 142 149 162;
+    --negative: 239 68 68;
+  }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading), sans-serif;
-  letter-spacing: -0.02em;
-}
+  body {
+    background-color: rgb(var(--bg));
+    color: rgb(var(--fg));
+    font-family: var(--font-body), serif;
+    overflow-x: hidden;
+  }
 
-code, kbd, samp, pre {
-  font-family: var(--font-mono), monospace;
-}
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading), sans-serif;
+    letter-spacing: -0.02em;
+  }
 
-::selection {
-  background-color: #D8A83E;
-  color: #111315;
+  code, kbd, samp, pre {
+    font-family: var(--font-mono), monospace;
+  }
+
+  ::selection {
+    background-color: rgb(var(--gold));
+    color: rgb(var(--bg));
+  }
 }
 
 /* Custom subtle scrollbar */
@@ -36,39 +64,74 @@ code, kbd, samp, pre {
 }
 
 ::-webkit-scrollbar-track {
-  background: #111315;
+  background: rgb(var(--bg));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2C3138;
+  background: rgb(var(--border));
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #D8A83E;
+  background: rgb(var(--gold));
 }
 
 /* Glassmorphism helpers */
 .glass-panel {
-  background: rgba(24, 27, 30, 0.85);
+  background: rgb(var(--surface) / 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(44, 49, 56, 0.9);
+  border: 1px solid rgb(var(--border) / 0.9);
 }
 
 .glass-panel-elevated {
-  background: rgba(32, 36, 40, 0.85);
+  background: rgb(var(--elevated) / 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(216, 168, 62, 0.2);
+  border: 1px solid rgb(var(--gold) / 0.2);
 }
 
 .gold-glow {
-  box-shadow: 0 0 35px -5px rgba(216, 168, 62, 0.2);
+  box-shadow: 0 0 35px -5px rgb(var(--gold) / 0.2);
 }
 
 .gold-gradient-text {
   background: linear-gradient(135deg, #FFF6DE 0%, #D8A83E 50%, #B28322 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+@layer components {
+  .card-panel {
+    @apply rounded-2xl border border-border bg-surface/80;
+  }
+  .card-panel-solid {
+    @apply rounded-2xl border border-border bg-surface;
+  }
+  .inset-panel {
+    @apply rounded-lg border border-border bg-elevated/80;
+  }
+  .text-muted {
+    @apply text-foreground/70;
+  }
+  .text-faint {
+    @apply text-foreground/50;
+  }
+  .gold-chip {
+    @apply font-mono text-[10px] uppercase tracking-widest text-gold bg-gold/10 border border-gold/30 px-2 py-1 rounded;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gold text-background font-heading font-bold text-sm hover:bg-gold-hover transition-all shadow-lg shadow-gold/20;
+  }
+  .link-gold {
+    @apply inline-flex items-center gap-1.5 text-xs font-heading font-semibold text-gold hover:text-gold-hover transition-colors;
+  }
+}
+
+/* Smooth theme transition */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease 0.05s !important;
 }

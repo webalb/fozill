@@ -12,15 +12,15 @@ export function SignalTicker() {
   ];
 
   return (
-    <div className="w-full bg-[#14171A] border-y border-[#2C3138] overflow-hidden py-2.5 relative">
+    <div className="w-full bg-card border-y border-border overflow-hidden py-2.5 relative">
       {/* Visual Accent Glow on sides */}
-      <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[#111315] to-transparent z-10 pointer-events-none" />
-      <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#111315] to-transparent z-10 pointer-events-none" />
+      <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+      <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
       <div className="flex items-center">
-        <div className="flex items-center gap-2 pl-4 pr-6 shrink-0 border-r border-[#2C3138] z-20 bg-[#14171A]">
-          <span className="flex h-2 w-2 rounded-full bg-[#D8A83E] animate-ping" />
-          <span className="font-mono text-[11px] font-bold text-[#D8A83E] uppercase tracking-wider">
+        <div className="flex items-center gap-2 pl-4 pr-6 shrink-0 border-r border-border z-20 bg-card">
+          <span className="flex h-2 w-2 rounded-full bg-gold animate-ping" />
+          <span className="font-mono text-[11px] font-bold text-gold uppercase tracking-wider">
             LIVE SIGNALS
           </span>
         </div>
@@ -29,23 +29,23 @@ export function SignalTicker() {
           {[...signals, ...signals].map((sig, idx) => (
             <div
               key={idx}
-              className="inline-flex items-center gap-2 text-xs font-mono text-[#F5F5F2]/90"
+              className="inline-flex items-center gap-2 text-xs font-mono text-foreground/90"
             >
-              <span className="px-1.5 py-0.5 rounded bg-[#202428] text-[#D8A83E] text-[10px] font-semibold border border-[#2C3138]">
+              <span className="px-1.5 py-0.5 rounded bg-elevated text-gold text-[10px] font-semibold border border-border">
                 {sig.label}
               </span>
-              <span className="text-[#F5F5F2] font-medium">{sig.value}</span>
-              <span className="text-[#F5F5F2]/40 text-[10px] flex items-center gap-0.5">
+              <span className="text-foreground font-medium">{sig.value}</span>
+              <span className="text-foreground/40 text-[10px] flex items-center gap-0.5">
                 ({sig.loc})
               </span>
               {sig.trend === "up" ? (
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#10B981]" />
+                <ArrowUpRight className="w-3.5 h-3.5 text-positive" />
               ) : sig.trend === "down" ? (
-                <ArrowDownRight className="w-3.5 h-3.5 text-[#EF4444]" />
+                <ArrowDownRight className="w-3.5 h-3.5 text-negative" />
               ) : (
-                <TrendingUp className="w-3.5 h-3.5 text-[#8E95A2]" />
+                <TrendingUp className="w-3.5 h-3.5 text-neutral" />
               )}
-              <span className="text-[#2C3138] mx-2">•</span>
+              <span className="text-border mx-2">•</span>
             </div>
           ))}
         </div>

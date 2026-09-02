@@ -9,7 +9,11 @@ const ZONE_CARD_STYLE = "rounded-lg font-mono text-[10px]";
 
 function SentimentBand({ score }: { score: number }) {
   const color =
-    score >= 55 ? "#10B981" : score >= 45 ? "#D8A83E" : "#EF4444";
+    score >= 55
+      ? "rgb(var(--positive))"
+      : score >= 45
+      ? "rgb(var(--gold))"
+      : "rgb(var(--negative))";
   return (
     <div
       className="h-1.5 rounded-full"
@@ -39,8 +43,8 @@ export default function DemoTerminalPage() {
               onClick={() => setActiveDossier(key)}
               className={`px-4 py-2 rounded-lg font-mono text-xs transition-all border ${
                 activeDossier === key
-                  ? "bg-[#D8A83E]/15 border-[#D8A83E] text-[#D8A83E]"
-                  : "bg-[#181B1E] border-[#2C3138] text-[#F5F5F2]/70 hover:border-[#D8A83E]/50"
+                  ? "bg-gold/15 border-gold text-gold"
+                  : "bg-surface border-border text-foreground/70 hover:border-gold/50"
               }`}
             >
               {d.sector}
@@ -50,87 +54,87 @@ export default function DemoTerminalPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left: dossier meta + summary */}
-          <div className="lg:col-span-2 rounded-2xl border border-[#2C3138] bg-[#181B1E]/80 p-8">
-            <div className="flex items-center justify-between border-b border-[#2C3138] pb-4 mb-6">
+          <div className="lg:col-span-2 rounded-2xl border border-border bg-surface/80 p-8">
+            <div className="flex items-center justify-between border-b border-border pb-4 mb-6">
               <div className="flex items-center gap-2">
-                <span className="h-2 w-2 rounded-full bg-[#10B981] animate-pulse" />
-                <span className="font-mono text-xs font-bold tracking-wider text-[#D8A83E] uppercase">
+                <span className="h-2 w-2 rounded-full bg-positive animate-pulse" />
+                <span className="font-mono text-xs font-bold tracking-wider text-gold uppercase">
                   {dossier.classification}
                 </span>
               </div>
-              <span className="font-mono text-xs text-[#F5F5F2]/50">
+              <span className="font-mono text-xs text-foreground/50">
                 {dossier.date} // {dossier.sector}
               </span>
             </div>
 
-            <div className="mb-2 font-mono text-xs text-[#F5F5F2]/50">
-              TARGET ENTITY: <span className="text-[#D8A83E]">{dossier.targetEntity}</span>
+            <div className="mb-2 font-mono text-xs text-foreground/50">
+              TARGET ENTITY: <span className="text-gold">{dossier.targetEntity}</span>
             </div>
 
             <h2 className="font-heading font-bold text-2xl mb-6">Executive Summary</h2>
             <ul className="space-y-3 mb-8">
               {dossier.executiveSummary.map((s, idx) => (
-                <li key={idx} className="flex items-start gap-3 font-body text-sm text-[#F5F5F2]/85">
-                  <span className="font-mono text-[10px] text-[#D8A83E] mt-1">0{idx + 1}</span>
+                <li key={idx} className="flex items-start gap-3 font-body text-sm text-foreground/85">
+                  <span className="font-mono text-[10px] text-gold mt-1">0{idx + 1}</span>
                   {s}
                 </li>
               ))}
             </ul>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-              <div className="rounded-lg bg-[#202428]/80 border border-[#2C3138] p-4">
-                <div className="font-mono text-[10px] text-[#D8A83E] uppercase tracking-wider mb-2">
+              <div className="inset-panel p-4">
+                <div className="font-mono text-[10px] text-gold uppercase tracking-wider mb-2">
                   Key Shift
                 </div>
-                <p className="font-body text-sm text-[#F5F5F2]/85">{dossier.keyShift}</p>
+                <p className="font-body text-sm text-foreground/85">{dossier.keyShift}</p>
               </div>
-              <div className="rounded-lg bg-[#202428]/80 border border-[#2C3138] p-4">
-                <div className="font-mono text-[10px] text-[#D8A83E] uppercase tracking-wider mb-2">
+              <div className="inset-panel p-4">
+                <div className="font-mono text-[10px] text-gold uppercase tracking-wider mb-2">
                   Dominant Narrative
                 </div>
-                <p className="font-body text-sm text-[#F5F5F2]/85">{dossier.dominantNarrative}</p>
+                <p className="font-body text-sm text-foreground/85">{dossier.dominantNarrative}</p>
               </div>
             </div>
 
             {/* Health score */}
-            <div className="rounded-lg bg-[#202428]/80 border border-[#2C3138] p-5">
-              <div className="flex justify-between font-mono text-xs text-[#F5F5F2]/60 mb-3">
+            <div className="inset-panel p-5">
+              <div className="flex justify-between font-mono text-xs text-foreground/60 mb-3">
                 <span className="uppercase tracking-wider">Brand &amp; Perception Health</span>
                 <span>
                   {dossier.healthScore.positive}% POS / {dossier.healthScore.neutral}% NEU /{" "}
                   {dossier.healthScore.negative}% NEG
                 </span>
               </div>
-              <div className="flex h-3 w-full overflow-hidden rounded-full bg-[#14171A] border border-[#2C3138]">
-                <div style={{ width: `${dossier.healthScore.positive}%` }} className="bg-[#10B981]" />
-                <div style={{ width: `${dossier.healthScore.neutral}%` }} className="bg-[#8E95A2]" />
-                <div style={{ width: `${dossier.healthScore.negative}%` }} className="bg-[#EF4444]" />
+              <div className="flex h-3 w-full overflow-hidden rounded-full bg-card border border-border">
+                <div style={{ width: `${dossier.healthScore.positive}%` }} className="bg-positive" />
+                <div style={{ width: `${dossier.healthScore.neutral}%` }} className="bg-neutral" />
+                <div style={{ width: `${dossier.healthScore.negative}%` }} className="bg-negative" />
               </div>
             </div>
           </div>
 
           {/* Right: regional sentiment */}
-          <div className="rounded-2xl border border-[#2C3138] bg-[#181B1E]/80 p-8">
-            <div className="font-mono text-xs text-[#F5F5F2]/50 uppercase tracking-widest mb-6">
+          <div className="rounded-2xl border border-border bg-surface/80 p-8">
+            <div className="font-mono text-xs text-foreground/50 uppercase tracking-widest mb-6">
               Geopolitical Sentiment
             </div>
             <div className="space-y-5">
               {dossier.regionalSentiment.map((r) => {
                 const zone = NIGERIA_GEOPOLITICAL_ZONES.find((z) => z.name.startsWith(r.zone));
                 return (
-                  <div key={r.zone} className="pb-5 border-b border-[#2C3138] last:border-b-0 last:pb-0">
+                  <div key={r.zone} className="pb-5 border-b border-border last:border-b-0 last:pb-0">
                     <div className="flex items-center justify-between mb-2">
-                      <span className={`${ZONE_CARD_STYLE} text-[#D8A83E] font-semibold`}>
+                      <span className={`${ZONE_CARD_STYLE} text-gold font-semibold`}>
                         {r.zone}
                       </span>
-                      <span className="font-mono text-xs font-bold text-[#F5F5F2]">{r.score}</span>
+                      <span className="font-mono text-xs font-bold text-foreground">{r.score}</span>
                     </div>
                     <SentimentBand score={r.score} />
-                    <p className="font-body text-xs text-[#F5F5F2]/65 mt-2 leading-relaxed">
+                    <p className="font-body text-xs text-foreground/65 mt-2 leading-relaxed">
                       {r.narrative}
                     </p>
                     {zone && (
-                      <p className="font-mono text-[10px] text-[#F5F5F2]/35 mt-1">
+                      <p className="font-mono text-[10px] text-foreground/35 mt-1">
                         States: {zone.states.join(", ")}
                       </p>
                     )}
@@ -139,11 +143,11 @@ export default function DemoTerminalPage() {
               })}
             </div>
 
-            <div className="mt-8 rounded-lg bg-[#202428]/80 border border-[#2C3138] p-4">
-              <div className="font-mono text-[10px] text-[#D8A83E] uppercase tracking-wider mb-2">
+            <div className="mt-8 inset-panel p-4">
+              <div className="font-mono text-[10px] text-gold uppercase tracking-wider mb-2">
                 Prescribed Strategic Action
               </div>
-              <p className="font-body text-sm text-[#F5F5F2]/85 leading-relaxed">
+              <p className="font-body text-sm text-foreground/85 leading-relaxed">
                 {dossier.recommendedAction}
               </p>
             </div>

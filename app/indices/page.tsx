@@ -23,24 +23,24 @@ export default function IndicesPage() {
                 : Minus;
             const directionColor =
               index.changeDirection === "up"
-                ? "text-[#EF4444]"
+                ? "text-negative"
                 : index.changeDirection === "down"
-                ? "text-[#10B981]"
-                : "text-[#8E95A2]";
+                ? "text-positive"
+                : "text-neutral";
             return (
               <div
                 key={index.id}
-                className="rounded-2xl border border-[#2C3138] bg-[#181B1E]/80 p-7 flex flex-col"
+                className="rounded-2xl border border-border bg-surface/80 p-7 flex flex-col"
               >
                 <div className="flex items-center justify-between mb-5">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-[#D8A83E] bg-[#D8A83E]/10 border border-[#D8A83E]/30 px-2 py-1 rounded">
+                  <span className="gold-chip">
                     {index.category}
                   </span>
-                  <span className="font-mono text-[10px] text-[#F5F5F2]/40">{index.date}</span>
+                  <span className="font-mono text-[10px] text-foreground/40">{index.date}</span>
                 </div>
                 <h2 className="font-heading font-bold text-lg mb-3">{index.title}</h2>
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="font-mono text-3xl font-bold text-[#D8A83E]">
+                  <span className="font-mono text-3xl font-bold text-gold">
                     {index.currentValue}
                   </span>
                   <span className={`font-mono text-sm font-semibold ${directionColor} flex items-center gap-1`}>
@@ -48,20 +48,20 @@ export default function IndicesPage() {
                     {index.changeValue}
                   </span>
                 </div>
-                <p className="font-body text-sm text-[#F5F5F2]/70 leading-relaxed mb-6 flex-grow">
+                <p className="font-body text-sm text-foreground/70 leading-relaxed mb-6 flex-grow">
                   {index.summary}
                 </p>
                 <ul className="space-y-2 mb-6">
                   {index.keyTakeaways.slice(0, 2).map((t) => (
-                    <li key={t} className="flex items-start gap-2 font-body text-xs text-[#F5F5F2]/75">
-                      <ArrowRight className="w-3.5 h-3.5 text-[#D8A83E] shrink-0 mt-0.5" />
+                    <li key={t} className="flex items-start gap-2 font-body text-xs text-foreground/75">
+                      <ArrowRight className="w-3.5 h-3.5 text-gold shrink-0 mt-0.5" />
                       {t}
                     </li>
                   ))}
                 </ul>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-1.5 text-xs font-heading font-semibold text-[#D8A83E] hover:text-[#F3CB6C] transition-colors"
+                  className="link-gold"
                 >
                   Get the full index <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
