@@ -8,8 +8,8 @@ export default function IndicesPage() {
     <>
       <PageHeader
         eyebrow="Public Intelligence"
-        title="Nigeria Indices & Data Snapshots"
-        subtitle="Free, recurring intelligence published for executives and investors. A taste of the analytical rigor we deliver on retainer."
+        title="Global Indices & Data Snapshots"
+        subtitle="Free, recurring intelligence published for executives and investors. A taste of the analytical rigor we deliver on retainer — starting with our flagship Nigeria desk, expanding globally."
       />
 
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

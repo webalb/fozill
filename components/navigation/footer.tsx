@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { Shield, ArrowUpRight, Lock, MapPin, Mail, Phone } from "lucide-react";
+import Image from "next/image";
+import { ArrowUpRight, Lock, MapPin, Mail, Phone } from "lucide-react";
 
 export function Footer() {
   return (
@@ -10,21 +11,28 @@ export function Footer() {
           {/* Brand Info */}
           <div className="lg:col-span-2 space-y-4">
             <Link href="/" className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg bg-surface border border-gold/40 flex items-center justify-center">
-                <Shield className="w-4 h-4 text-gold" />
-              </div>
+              <Image
+                src="/logo-footer.webp"
+                alt="Fozill logo"
+                width={64}
+                height={64}
+                className="w-12 h-12 object-contain shrink-0"
+                unoptimized
+              />
               <span className="font-heading font-extrabold text-xl tracking-wider text-foreground">
                 FOZILL<span className="text-gold">.</span>
               </span>
             </Link>
 
             <p className="font-body text-sm text-foreground/70 leading-relaxed max-w-sm">
-              We turn Nigeria&apos;s fragmented public discourse, digital media, regional sentiment, and economic signals into high-stakes intelligence for business, political, and institutional leaders.
+              We turn the world&apos;s fragmented public discourse, digital media, regional sentiment,
+              and economic signals into high-stakes intelligence for business, political, and
+              institutional leaders.
             </p>
 
             <div className="flex items-center gap-2 pt-2 text-xs font-mono text-gold">
               <span className="h-2 w-2 rounded-full bg-positive animate-pulse" />
-              <span>NIGERIA INTELLIGENCE DESK ACTIVE • 36 STATES + FCT</span>
+              <span>GLOBAL INTELLIGENCE DESK ACTIVE • 36 STATES + FCT • WORLDWIDE</span>
             </div>
           </div>
 
@@ -95,15 +103,15 @@ export function Footer() {
             <ul className="space-y-2.5 font-body text-xs text-foreground/70">
               <li className="flex items-start gap-2">
                 <MapPin className="w-3.5 h-3.5 text-gold shrink-0 mt-0.5" />
-                <span>Lagos • Abuja • Kano</span>
+                <span>Lagos HQ • Abuja • Kano • Global</span>
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-gold shrink-0" />
-                <span>briefs@fozill.com</span>
+                <span>hello@fozill.com</span>
               </li>
               <li className="flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-gold shrink-0" />
-                <span>+234 (0) 800-FOZILL</span>
+                <span>+234 0905 4755 445</span>
               </li>
               <li className="pt-2">
                 <Link
@@ -122,7 +130,9 @@ export function Footer() {
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-foreground/50">
           <p>© {new Date().getFullYear()} Fozill Intelligence Technologies Ltd. All rights reserved.</p>
           <p className="max-w-xl text-center md:text-right text-[11px] leading-relaxed">
-            Fozill strictly operates via Open Source Intelligence (OSINT), public web discourse, broadcast monitoring, and aggregated sentiment synthesis in compliance with NDPR and Nigerian ethical standards.
+            Fozill, headquartered in Nigeria, operates globally via Open Source Intelligence (OSINT),
+            public web discourse, broadcast monitoring, and aggregated sentiment synthesis in
+            compliance with NDPR, GDPR, and applicable ethical standards.
           </p>
         </div>
       </div>

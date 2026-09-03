@@ -31,6 +31,8 @@ export default function BriefsPage() {
                 dominantNarrative={d.dominantNarrative}
                 topGeographies={d.topGeographies}
                 recommendedAction={d.recommendedAction}
+                trend={d.trend}
+                regionalSentiment={d.regionalSentiment}
               />
               <div className="flex items-center justify-between px-2">
                 <span className="font-mono text-xs text-foreground/50">

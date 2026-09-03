@@ -36,14 +36,14 @@ export async function subscribeNewsletter(
 
     if (isResendConfigured) {
       await resend.emails.send({
-        from: "Fozill Intelligence <briefs@fozill.com>",
+        from: "Fozill Intelligence <hello@fozill.com>",
         to: [email],
-        subject: "Welcome to the Nigeria Intelligence Digest",
-        html: `<p>Thank you for subscribing to the Nigeria Intelligence Digest.</p><p>The next weekly briefing is on its way.</p>`,
+        subject: "Welcome to the Global Intelligence Digest",
+        html: `<p>Thank you for subscribing to the Global Intelligence Digest.</p><p>The next weekly briefing is on its way.</p>`,
       });
     }
 
-    return { success: true, message: "Subscribed. Welcome to the Nigeria Intelligence Digest." };
+    return { success: true, message: "Subscribed. Welcome to the Global Intelligence Digest." };
   } catch (error) {
     console.error("Newsletter subscription failed:", error);
     return { success: false, message: "Something went wrong. Please try again." };

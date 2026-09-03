@@ -10,7 +10,7 @@ const pipeline = [
   {
     icon: MessageSquare,
     title: "Localized NLP & Entity Resolution",
-    body: "Models tuned for English, Hausa, Yoruba, Igbo, Fulfulde, and Nigerian Pidgin. We understand context, not just keywords.",
+    body: "Models tuned for global and African languages — English, Hausa, Yoruba, Igbo, Fulfulde, Nigerian Pidgin, and more. We understand context, not just keywords.",
   },
   {
     icon: Globe,
@@ -34,8 +34,8 @@ export default function AboutPage() {
     <>
       <PageHeader
         eyebrow="Methodology & Moat"
-        title="Why Generic Western Tools Fail in Nigeria"
-        subtitle="A platform that monitors mentions is a commodity. One that understands Nigeria — its languages, institutions, regions, and cultural subtext — is a moat."
+        title="Why Generic Tools Fail in High-Context Markets"
+        subtitle="A platform that monitors mentions is a commodity. One that understands a market's languages, institutions, regions, and cultural subtext — rooted in our flagship Africa desk — is a moat."
       />
 
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -48,18 +48,18 @@ export default function AboutPage() {
               “This thing don cost.”
             </h2>
             <p className="font-body text-base text-foreground/75 leading-relaxed">
-              A generic American sentiment model reads this line as simply negative. But what does
-              it really signal — price sensitivity, sarcasm, political criticism, product quality
-              discourse, or a brand opportunity? Understanding that difference is exactly what
-              separates noise from intelligence.
+              A generic American sentiment model reads this Nigerian Pidgin line as simply negative.
+              But what does it really signal — price sensitivity, sarcasm, political criticism,
+              product quality discourse, or a brand opportunity? Understanding that difference is
+              exactly what separates noise from intelligence.
             </p>
             <p className="font-body text-base text-foreground/75 leading-relaxed">
               We built Fozill to understand Nigerian Pidgin, Hausa cultural discourse, regional
-              slang, our institutions, our media ecosystem, and dark social distribution. That
-              localization is the product.
+              slang, institutions, media ecosystems, and dark social distribution. That localization
+              — now extended to high-context markets globally — is the product.
             </p>
             <blockquote className="border-l-2 border-gold pl-5 font-body italic text-foreground/85 leading-relaxed">
-              “We turn Nigeria's fragmented public information into strategic, high-stakes
+              “We turn the world's fragmented public information into strategic, high-stakes
               intelligence for business, political, and economic leaders.”
             </blockquote>
           </div>
@@ -105,10 +105,10 @@ export default function AboutPage() {
             <div>
               <h3 className="font-heading font-bold text-lg mb-2">Ethical & Legal Standards</h3>
               <p className="font-body text-sm text-foreground/75 leading-relaxed max-w-3xl">
-                Fozill strictly operates via Open Source Intelligence (OSINT), public web discourse,
-                broadcast monitoring, and aggregated sentiment synthesis in compliance with Nigeria's
-                Data Protection Regulation (NDPR) and ethical standards. We do not engage in
-                surveillance, intrusion, or acquisition of non-public data.
+                Fozill, headquartered in Nigeria, operates globally via Open Source Intelligence
+                (OSINT), public web discourse, broadcast monitoring, and aggregated sentiment
+                synthesis in compliance with NDPR, GDPR, and applicable ethical standards. We do not
+                engage in surveillance, intrusion, or acquisition of non-public data.
               </p>
             </div>
           </div>

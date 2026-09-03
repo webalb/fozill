@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Shield, ChevronDown, Menu, X, ArrowRight, Activity } from "lucide-react";
+import { ChevronDown, Menu, X, ArrowRight, Activity } from "lucide-react";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 export function Navbar() {
@@ -22,7 +23,7 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Live Dossiers", href: "/briefs" },
-    { name: "Nigeria Indices", href: "/indices" },
+    { name: "Global Indices", href: "/indices" },
     { name: "Methodology", href: "/about" },
     { name: "Pricing", href: "/pricing" },
   ];
@@ -39,9 +40,14 @@ export function Navbar() {
         <div className="flex items-center justify-between">
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-surface to-card border border-gold/40 flex items-center justify-center shadow-sm group-hover:border-gold transition-all">
-              <Shield className="w-5 h-5 text-gold" />
-            </div>
+            <Image
+              src="/logo-navbar.webp"
+              alt="Fozill logo"
+              width={36}
+              height={36}
+              className="w-9 h-9 object-contain shrink-0 group-hover:opacity-90 transition-opacity"
+              unoptimized
+            />
             <div className="flex flex-col">
               <span className="font-heading font-extrabold text-xl tracking-wider text-foreground group-hover:text-gold transition-colors">
                 FOZILL<span className="text-gold">.</span>
@@ -109,7 +115,7 @@ export function Navbar() {
                         Economic & Sector Intelligence
                       </div>
                       <p className="font-body text-xs text-foreground/60 mt-1 leading-relaxed">
-                        Nigeria Consumer Pressure Index, price sensitivity trends, and macro signals.
+                        Nigeria Consumer Pressure Index, price sensitivity trends, and macro signals across emerging markets.
                       </p>
                     </Link>
                   </div>

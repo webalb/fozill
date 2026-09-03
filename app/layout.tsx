@@ -24,22 +24,37 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fozill | Strategic Intelligence Platform for Nigeria",
+  title: "Fozill | Global Strategic Intelligence Platform",
   description:
-    "We turn Nigeria's fragmented public information into strategic, high-stakes intelligence for business, political, and economic leaders.",
+    "We turn fragmented public information from markets worldwide into strategic, high-stakes intelligence for business, political, and economic leaders.",
   keywords: [
-    "Nigeria Business Intelligence",
-    "SOCMINT Nigeria",
-    "Market Research Nigeria",
+    "Global Business Intelligence",
+    "SOCMINT Intelligence",
+    "Market Research Africa",
     "Political Perception Intelligence",
     "Nigeria Consumer Pressure Index",
-    "Brand Intelligence Lagos Abuja Kano",
+    "Emerging Market Intelligence",
   ],
   authors: [{ name: "Fozill Intelligence" }],
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { url: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { url: "/android-chrome-192x192.png", type: "image/png", sizes: "192x192" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    other: [
+      {
+        rel: "manifest",
+        url: "/manifest.webmanifest",
+      },
+    ],
+  },
   openGraph: {
-    title: "Fozill | Strategic Intelligence Platform for Nigeria",
+    title: "Fozill | Global Strategic Intelligence Platform",
     description:
-      "Turning Nigeria's public signals, regional sentiment, and digital discourse into executive decisions.",
+      "Turning public signals, regional sentiment, and digital discourse from markets worldwide into executive decisions.",
     url: "https://fozill.com",
     siteName: "Fozill Intelligence",
     locale: "en_NG",

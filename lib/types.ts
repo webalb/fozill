@@ -15,6 +15,10 @@ export interface DossierData {
   topGeographies: string[];
   driverAccountsSummary: string;
   recommendedAction: string;
+  trend: {
+    label: string;
+    value: number;
+  }[];
   regionalSentiment: {
     zone: string;
     score: number; // 0 - 100 positive index

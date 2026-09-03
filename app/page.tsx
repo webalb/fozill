@@ -4,7 +4,6 @@ import { SignalTicker } from "@/components/hero/signal-ticker";
 import { IntelligenceGraphMock } from "@/components/hero/intelligence-graph-mock";
 import { DossierCard } from "@/components/intelligence/dossier-card";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
-import { PRICING_TIERS } from "@/lib/data/pricing-tiers";
 import { SAMPLE_DOSSIERS } from "@/lib/data/sample-dossiers";
 import { NIGERIA_GEOPOLITICAL_ZONES } from "@/lib/data/geopolitical-zones";
 
@@ -14,7 +13,7 @@ const pillars = [
     title: "Business & Marketing Intelligence",
     tag: "Cash Engine",
     description:
-      "Brand health tracking, competitor early warning, and sentiment shift detection across Nigeria's commercial corridors. Know when a rival gains organic traction before it shows up in quarterly sales.",
+      "Brand health tracking, competitor early warning, and sentiment shift detection across the world's fastest-moving commercial corridors. Know when a rival gains organic traction before it shows up in quarterly sales.",
     points: [
       "Competitor momentum radar",
       "Brand crisis early warning",
@@ -27,7 +26,7 @@ const pillars = [
     title: "Political & Public Identity Intelligence",
     tag: "2027 Window",
     description:
-      "Perception mapping and multi-lingual narrative attribution across all 36 states and 6 geopolitical zones. We tell you who started a conversation, who amplified it, and why regions diverge.",
+      "Perception mapping and multi-lingual narrative attribution across regions and markets. We tell you who started a conversation, who amplified it, and why communities diverge.",
     points: [
       "Kano vs Kaduna vs Lagos comparison",
       "Narrative attribution & bot filtering",
@@ -40,7 +39,7 @@ const pillars = [
     title: "Economic & Sector Intelligence",
     tag: "Most Sophisticated",
     description:
-      "Macro sentiment on FX, subsidy reform, inflation, and purchasing power. Sector deep dives and price-sensitivity tracking for investors and corporate strategy teams.",
+      "Macro sentiment on FX, reform, inflation, and purchasing power. Sector deep dives and price-sensitivity tracking for investors and corporate strategy teams.",
     points: [
       "Nigeria Consumer Pressure Index",
       "Sector deep dives",
@@ -51,7 +50,6 @@ const pillars = [
 ];
 
 export default function Home() {
-  const retainer = PRICING_TIERS.find((t) => t.id === "retainer-starter") ?? PRICING_TIERS[0];
   const fmcgDossier = SAMPLE_DOSSIERS["fmcg"];
   const zones = NIGERIA_GEOPOLITICAL_ZONES;
 
@@ -65,16 +63,16 @@ export default function Home() {
             <div className="space-y-8">
               <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-gold/30 bg-gold/10 font-mono text-[11px] text-gold uppercase tracking-wider">
                 <span className="h-1.5 w-1.5 rounded-full bg-gold animate-pulse" />
-                Nigeria Strategic Intelligence Desk
+                Global Strategic Intelligence Desk
               </div>
               <h1 className="font-heading font-extrabold text-4xl sm:text-5xl xl:text-6xl leading-[1.05] tracking-tight">
-                Turn Nigeria&apos;s Public Signals Into{" "}
+                Turn the World&apos;s Public Signals Into{" "}
                 <span className="gold-gradient-text">Strategic Decisions.</span>
               </h1>
               <p className="font-body text-lg text-foreground/80 leading-relaxed max-w-xl">
                 We monitor public discourse, digital media, regional sentiment, and institutional
-                data across Nigeria to tell CEOs, CMOs, and political leaders what is happening,
-                why, and what to do next.
+                data across markets worldwide to tell CEOs, CMOs, and political leaders what is
+                happening, why, and what to do next.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
@@ -161,6 +159,8 @@ export default function Home() {
                 dominantNarrative={fmcgDossier.dominantNarrative}
                 topGeographies={fmcgDossier.topGeographies}
                 recommendedAction={fmcgDossier.recommendedAction}
+                trend={fmcgDossier.trend}
+                regionalSentiment={fmcgDossier.regionalSentiment}
               />
             </div>
             <div className="space-y-6 order-1 lg:order-2">
@@ -204,15 +204,15 @@ export default function Home() {
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-2xl mb-12">
           <div className="font-mono text-xs text-gold uppercase tracking-widest mb-3">
-            The Nigeria Moat
+            The Africa Desk // Nigeria Showcase
           </div>
           <h2 className="font-heading font-bold text-3xl sm:text-4xl tracking-tight">
-            6 Geopolitical Zones. Widely Divergent Realities.
+            Deep Regional Intelligence. Start With Nigeria.
           </h2>
           <p className="font-body text-base text-foreground/75 mt-4 leading-relaxed">
-            A generic Western sentiment model misreads Nigerian context. We track how perception
-            diverges across Kano, Kaduna, Abuja, Lagos, Onitsha, and Port Harcourt — in English,
-            Hausa, Yoruba, Igbo, and Pidgin.
+            Our platform reads nuance that generic models miss. Here&apos;s a live sample — how
+            perception diverges across Nigeria&apos;s 6 geopolitical zones, in English, Hausa,
+            Yoruba, Igbo, and Pidgin. The same regional depth now extends to markets worldwide.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -248,57 +248,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PRICING SNAPSHOT */}
-      <section className="py-20 border-t border-border bg-card/40">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <div className="font-mono text-xs text-gold uppercase tracking-widest mb-3">
-              Engagement Ladder
-            </div>
-            <h2 className="font-heading font-bold text-3xl sm:text-4xl tracking-tight">
-              Start With a Wealth of Options
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {PRICING_TIERS.map((tier) => (
-              <div
-                key={tier.id}
-                className={`rounded-2xl border p-7 ${
-                  tier.highlighted
-                    ? "border-gold bg-elevated shadow-xl shadow-gold/10"
-                    : "border-border bg-surface/80"
-                }`}
-              >
-                <div className="flex items-center justify-between mb-2">
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-foreground/50">
-                    {tier.layer}
-                  </span>
-                  {tier.badge && (
-                    <span className="gold-chip">{tier.badge}</span>
-                  )}
-                </div>
-                <h3 className="font-heading font-bold text-lg mb-1">{tier.name}</h3>
-                <div className="mb-5">
-                  <span className="font-heading font-extrabold text-2xl text-gold">{tier.price}</span>
-                  <span className="font-mono text-xs text-foreground/50 block mt-0.5">{tier.period}</span>
-                </div>
-                <p className="font-body text-xs text-foreground/70 leading-relaxed mb-4">
-                  {tier.description}
-                </p>
-                <Link
-                  href="/pricing"
-                  className={`inline-flex items-center gap-2 text-xs font-heading font-bold ${
-                    tier.highlighted ? "text-gold" : "text-foreground/80 hover:text-foreground"
-                  } transition-colors`}
-                >
-                  {tier.ctaText} <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* LEAD MAGNET */}
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="rounded-3xl border border-gold/30 bg-gradient-to-br from-elevated to-card p-10 lg:p-14 text-center relative overflow-hidden">
@@ -308,11 +257,11 @@ export default function Home() {
               Weekly Free Intelligence
             </div>
             <h2 className="font-heading font-bold text-3xl sm:text-4xl tracking-tight mb-4">
-              The Nigeria Intelligence Digest
+              The Global Intelligence Digest
             </h2>
             <p className="font-body text-base text-foreground/75 max-w-xl mx-auto mb-8 leading-relaxed">
               Read by leaders in Banking, FMCG, and Governance. Each week, the sharpest signals
-              across Nigeria&apos;s commercial, political, and economic landscape — distilled.
+              across the world&apos;s emerging markets — commercial, political, and economic — distilled.
             </p>
             <NewsletterForm />
           </div>

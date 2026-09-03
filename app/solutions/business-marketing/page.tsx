@@ -38,7 +38,7 @@ export default function BusinessMarketingPage() {
       <PageHeader
         eyebrow="Strategic Pillar 01 // Business & Marketing"
         title="Business & Marketing Intelligence"
-        subtitle="Brand health tracking, competitor early warning, and sentiment shift detection across Nigeria's most competitive commercial corridors — distilled into executive action."
+        subtitle="Brand health tracking, competitor early warning, and sentiment shift detection across the world's most competitive commercial corridors — distilled into executive action."
         cta={{
           label: "Request a Brand Baseline Report",
           href: "/contact",
@@ -70,6 +70,8 @@ export default function BusinessMarketingPage() {
             dominantNarrative={dossier.dominantNarrative}
             topGeographies={dossier.topGeographies}
             recommendedAction={dossier.recommendedAction}
+            trend={dossier.trend}
+            regionalSentiment={dossier.regionalSentiment}
           />
           <div className="space-y-6">
             <div className="font-mono text-xs text-gold uppercase tracking-widest">

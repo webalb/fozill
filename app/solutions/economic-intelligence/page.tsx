@@ -29,7 +29,7 @@ export default function EconomicIntelligencePage() {
       <PageHeader
         eyebrow="Strategic Pillar 03 // Economic & Sector"
         title="Economic & Market Intelligence"
-        subtitle="Macro sentiment, sector deep dives, and price-sensitivity tracking for investors, corporate strategy teams, and foreign capital entering Nigeria."
+        subtitle="Macro sentiment, sector deep dives, and price-sensitivity tracking for investors, corporate strategy teams, and foreign capital entering high-growth emerging markets."
         cta={{
           label: "Commission a Market Entry Study",
           href: "/contact",

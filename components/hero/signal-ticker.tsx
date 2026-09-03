@@ -3,12 +3,12 @@ import { TrendingUp, AlertCircle, ArrowUpRight, ArrowDownRight } from "lucide-re
 
 export function SignalTicker() {
   const signals = [
-    { label: "FMCG SENSITIVITY", value: "Price Resistance ↑ 18%", trend: "up", loc: "NW Corridors" },
-    { label: "LAGOS METRO SENTIMENT", value: "61% Positive", trend: "up", loc: "South-West" },
-    { label: "FINTECH DISPUTES", value: "POS Settlement Inquiries ↑ 31%", trend: "up", loc: "Nationwide" },
-    { label: "NORTHERN BROADCAST", value: "Hausa Radio Discourse 68% Subsidy-focused", trend: "neutral", loc: "Kano / Kaduna" },
+    { label: "EMERGING MKT SENTIMENT", value: "Price Resistance ↑ 18%", trend: "up", loc: "Global" },
+    { label: "LAGOS METRO", value: "61% Positive", trend: "up", loc: "Nigeria" },
+    { label: "FINTECH DISPUTES", value: "POS Settlement Inquiries ↑ 31%", trend: "up", loc: "Global" },
+    { label: "DIASPORA DISCOURSE", value: "68% Remittance-tax focused", trend: "neutral", loc: "Global" },
     { label: "2027 PERCEPTION RADAR", value: "14 Bot Clusters Identified", trend: "down", loc: "Abuja FCT" },
-    { label: "PORT HARCOURT COMMERCE", value: "Retail Sachet Volume Demand ↑ 24%", trend: "up", loc: "South-South" },
+    { label: "E-MOBILITY SIGNALS", value: "EV Adopter Sentiment ↑ 24%", trend: "up", loc: "Global" },
   ];
 
   return (

@@ -60,6 +60,8 @@ export default function PoliticalIdentityPage() {
             dominantNarrative={dossier.dominantNarrative}
             topGeographies={dossier.topGeographies}
             recommendedAction={dossier.recommendedAction}
+            trend={dossier.trend}
+            regionalSentiment={dossier.regionalSentiment}
           />
           <div className="space-y-6">
             <div className="font-mono text-xs text-gold uppercase tracking-widest">

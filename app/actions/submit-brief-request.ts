@@ -59,7 +59,7 @@ export async function submitBriefRequest(
 
     if (isResendConfigured) {
       await resend.emails.send({
-        from: "Fozill Intelligence <alerts@fozill.com>",
+        from: "Fozill Intelligence <hello@fozill.com>",
         to: [process.env.FOUNDER_NOTIFICATION_EMAIL ?? ""].filter(Boolean),
         subject: `[NEW BRIEF REQUEST] ${data.organization} - ${data.category}`,
         html: `<p><strong>Client:</strong> ${data.fullName} (${data.organization})</p>
@@ -71,7 +71,7 @@ export async function submitBriefRequest(
       });
 
       await resend.emails.send({
-        from: "Fozill Intelligence <briefs@fozill.com>",
+        from: "Fozill Intelligence <hello@fozill.com>",
         to: [data.workEmail],
         subject: "Received: Your Strategic Intelligence Brief Request",
         html: `<p>Dear ${data.fullName},</p>
@@ -86,6 +86,6 @@ export async function submitBriefRequest(
     };
   } catch (error) {
     console.error("Brief request failed:", error);
-    return { success: false, message: "Something went wrong. Please try again or email briefs@fozill.com." };
+    return { success: false, message: "Something went wrong. Please try again or email hello@fozill.com." };
   }
 }
