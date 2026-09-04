@@ -25,6 +25,12 @@ export interface DossierData {
     status: "positive" | "neutral" | "negative";
     narrative: string;
   }[];
+  forecast: {
+    label: string;
+    value: number;
+  }[];
+  confidence: number; // 0 - 100
+  outlook: string;
 }
 
 export interface GeopoliticalZoneData {

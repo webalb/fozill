@@ -34,6 +34,14 @@ export const SAMPLE_DOSSIERS: Record<string, DossierData> = {
       { label: "25 Aug", value: 312 },
       { label: "28 Aug", value: 334 },
     ],
+    forecast: [
+      { label: "31 Aug", value: 352 },
+      { label: "3 Sep", value: 368 },
+      { label: "6 Sep", value: 379 },
+      { label: "9 Sep", value: 388 },
+    ],
+    confidence: 72,
+    outlook: "Negative volume is projected to keep rising over the next 30 days before plateauing, with peak complaint intensity expected in Northern urban corridors. Early-mover value-tier positioning will decide who captures the substitution share.",
     regionalSentiment: [
       { zone: "North-West", score: 28, status: "negative", narrative: "High sensitivity to sachet volume cuts; migration to local dairy blends." },
       { zone: "North-East", score: 32, status: "negative", narrative: "Sachet affordability discussions dominate FMCG grocery channels." },
@@ -76,6 +84,14 @@ export const SAMPLE_DOSSIERS: Record<string, DossierData> = {
       { label: "7 Sep", value: 54 },
       { label: "10 Sep", value: 49 },
     ],
+    forecast: [
+      { label: "14 Sep", value: 45 },
+      { label: "17 Sep", value: 42 },
+      { label: "20 Sep", value: 40 },
+      { label: "23 Sep", value: 39 },
+    ],
+    confidence: 68,
+    outlook: "Policy-reception sentiment is forecast to stabilise near neutral-to-positive as implementation details clarify. North-West and South-East corridors remain the volatility risk; proactive exemptions would lift reception +6 to +9 points within 60 days.",
     regionalSentiment: [
       { zone: "North-West", score: 31, status: "negative", narrative: "Concerns over inter-state agricultural transit levies." },
       { zone: "North-East", score: 35, status: "negative", narrative: "Demand for explicit security and grain transport exemptions." },
@@ -118,6 +134,14 @@ export const SAMPLE_DOSSIERS: Record<string, DossierData> = {
       { label: "1 Sep", value: 104 },
       { label: "4 Sep", value: 118 },
     ],
+    forecast: [
+      { label: "8 Sep", value: 126 },
+      { label: "11 Sep", value: 131 },
+      { label: "14 Sep", value: 134 },
+      { label: "17 Sep", value: 136 },
+    ],
+    confidence: 75,
+    outlook: "Merchant churn velocity is forecast to peak within 14 days and then decelerate as competitor saturation sets in. Without rapid dispute-resolution fixes, an estimated 4-6% of high-volume POS merchants are at near-term risk of migrating within the quarter.",
     regionalSentiment: [
       { zone: "South-West", score: 62, status: "positive", narrative: "App UI highly rated, but POS downtime during peak hours causes merchant friction." },
       { zone: "North-Central", score: 60, status: "positive", narrative: "Strong adoption among young civil servants and tech agency workers." },

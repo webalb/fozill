@@ -1,24 +1,190 @@
 "use client";
 
 import { useState } from "react";
+import {
+  ResponsiveContainer,
+  ComposedChart,
+  Area,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+  BarChart,
+  Bar,
+  Cell,
+} from "recharts";
 import { PageHeader } from "@/components/layout/page-header";
-import { NIGERIA_GEOPOLITICAL_ZONES } from "@/lib/data/geopolitical-zones";
 import { SAMPLE_DOSSIERS } from "@/lib/data/sample-dossiers";
 
-const ZONE_CARD_STYLE = "rounded-lg font-mono text-[10px]";
+function statusColor(status: "positive" | "neutral" | "negative") {
+  return status === "positive"
+    ? "rgb(var(--positive))"
+    : status === "negative"
+    ? "rgb(var(--negative))"
+    : "rgb(var(--gold))";
+}
 
-function SentimentBand({ score }: { score: number }) {
-  const color =
-    score >= 55
-      ? "rgb(var(--positive))"
-      : score >= 45
-      ? "rgb(var(--gold))"
-      : "rgb(var(--negative))";
+/* Stylized Nigeria heat-map (schematic 6-zone grid) */
+function ZoneMap({ dossier }: { dossier: (typeof SAMPLE_DOSSIERS)[keyof typeof SAMPLE_DOSSIERS] }) {
+  // Layout: [NW, NE] / [NC, SE] / [SW, SS] — approximates Nigeria's geography
+  const rows: string[][] = [
+    ["North-West", "North-East"],
+    ["North-Central", "South-East"],
+    ["South-West", "South-South"],
+  ];
+  const zoneShort: Record<string, string> = {
+    "North-West": "NW",
+    "North-East": "NE",
+    "North-Central": "NC",
+    "South-West": "SW",
+    "South-East": "SE",
+    "South-South": "SS",
+  };
   return (
-    <div
-      className="h-1.5 rounded-full"
-      style={{ width: `${score}%`, backgroundColor: color }}
-    />
+    <div className="space-y-1.5">
+      {rows.map((row, ri) => (
+        <div key={ri} className="grid grid-cols-2 gap-1.5">
+          {row.map((zone) => {
+            const r = dossier.regionalSentiment.find((x) => x.zone === zone);
+            if (!r) return <div key={zone} className="rounded-md border border-border bg-elevated/60 p-3" />;
+            return (
+              <div
+                key={zone}
+                className="rounded-lg border border-border p-3 text-center"
+                style={{
+                  background: `color-mix(in srgb, ${statusColor(r.status)} 38%, rgb(var(--card)))`,
+                }}
+                title={`${r.zone}: ${r.score}/100 — ${r.narrative}`}
+              >
+                <div className="font-mono text-[10px] text-foreground/60">{zoneShort[zone]}</div>
+                <div className="font-heading font-bold text-xl text-foreground leading-tight">{r.score}</div>
+                <div className="font-body text-[10px] text-foreground/55 mt-0.5 leading-snug">{zone}</div>
+              </div>
+            );
+          })}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* Trend area chart with dashed forecast (fmcg) */
+function TrendChart({ dossier }: { dossier: (typeof SAMPLE_DOSSIERS)[keyof typeof SAMPLE_DOSSIERS] }) {
+  const historical = dossier.trend.map((d) => ({ ...d, forecast: null }));
+  const projected = dossier.forecast.map((d) => ({ ...d, value: null, forecast: d.value }));
+  const data = [
+    ...historical,
+    { ...projected[0], value: undefined, forecast: undefined, join: true },
+    ...projected,
+  ];
+  return (
+    <div className="h-52 w-full">
+      <ResponsiveContainer width="100%" height="100%">
+        <ComposedChart data={data} margin={{ top: 6, right: 6, left: 6, bottom: 0 }}>
+          <defs>
+            <linearGradient id="termTrendFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="rgb(var(--gold))" stopOpacity={0.35} />
+              <stop offset="100%" stopColor="rgb(var(--gold))" stopOpacity={0.02} />
+            </linearGradient>
+          </defs>
+          <CartesianGrid stroke="rgb(var(--border))" strokeDasharray="3 3" vertical={false} />
+          <XAxis
+            dataKey="label"
+            tick={{ fontSize: 9, fill: "rgb(var(--muted))" }}
+            tickLine={false}
+            axisLine={{ stroke: "rgb(var(--border))" }}
+            interval={1}
+          />
+          <YAxis
+            width={34}
+            tick={{ fontSize: 9, fill: "rgb(var(--muted))" }}
+            tickLine={false}
+            axisLine={{ stroke: "rgb(var(--border))" }}
+          />
+          <Tooltip
+            contentStyle={{
+              background: "rgb(var(--card))",
+              border: "1px solid rgb(var(--border))",
+              borderRadius: 8,
+              fontSize: 12,
+            }}
+            labelStyle={{ color: "rgb(var(--muted))" }}
+          />
+          <Area
+            type="monotone"
+            dataKey="value"
+            name="Signal Volume"
+            stroke="rgb(var(--gold))"
+            strokeWidth={2}
+            fill="url(#termTrendFill)"
+          />
+          <Line
+            type="monotone"
+            dataKey="forecast"
+            name="Forecast"
+            stroke="rgb(var(--gold))"
+            strokeWidth={2}
+            strokeDasharray="6 4"
+            dot={false}
+          />
+        </ComposedChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
+/* Comparative bar graph (political) */
+function ZoneBarGraph({ dossier }: { dossier: (typeof SAMPLE_DOSSIERS)[keyof typeof SAMPLE_DOSSIERS] }) {
+  const zoneShort: Record<string, string> = {
+    "North-West": "NW",
+    "North-East": "NE",
+    "North-Central": "NC",
+    "South-West": "SW",
+    "South-East": "SE",
+    "South-South": "SS",
+  };
+  const data = dossier.regionalSentiment.map((r) => ({
+    label: zoneShort[r.zone] ?? r.zone,
+    score: r.score,
+    status: r.status,
+  }));
+  return (
+    <div className="h-52 w-full">
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart data={data} margin={{ top: 6, right: 6, left: 6, bottom: 0 }}>
+          <CartesianGrid stroke="rgb(var(--border))" strokeDasharray="3 3" vertical={false} />
+          <XAxis
+            dataKey="label"
+            tick={{ fontSize: 10, fill: "rgb(var(--muted))" }}
+            tickLine={false}
+            axisLine={{ stroke: "rgb(var(--border))" }}
+          />
+          <YAxis
+            width={30}
+            domain={[0, 100]}
+            tick={{ fontSize: 9, fill: "rgb(var(--muted))" }}
+            tickLine={false}
+            axisLine={{ stroke: "rgb(var(--border))" }}
+          />
+          <Tooltip
+            cursor={{ fill: "rgb(var(--card))" }}
+            contentStyle={{
+              background: "rgb(var(--card))",
+              border: "1px solid rgb(var(--border))",
+              borderRadius: 8,
+              fontSize: 12,
+            }}
+            labelStyle={{ color: "rgb(var(--muted))" }}
+          />
+          <Bar dataKey="score" name="Sentiment Score" radius={[4, 4, 0, 0]} maxBarSize={38}>
+            {data.map((d, i) => (
+              <Cell key={i} fill={statusColor(d.status)} />
+            ))}
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
   );
 }
 
@@ -31,7 +197,7 @@ export default function DemoTerminalPage() {
       <PageHeader
         eyebrow="Interactive Preview"
         title="Intelligence Terminal"
-        subtitle="A read-only preview of the continuous intelligence workspace offered to enterprise retainers. Explore narratives, zones, and sentiment in real time."
+        subtitle="A read-only preview of the continuous intelligence workspace offered to enterprise retainers. Switch the dossier to see distinct visualizations — map, chart, and graph — with predictive outlook."
       />
 
       <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -113,37 +279,49 @@ export default function DemoTerminalPage() {
             </div>
           </div>
 
-          {/* Right: regional sentiment */}
+          {/* Right: visualization + outlook */}
           <div className="rounded-2xl border border-border bg-surface/80 p-8">
             <div className="font-mono text-xs text-foreground/50 uppercase tracking-widest mb-6">
-              Geopolitical Sentiment
-            </div>
-            <div className="space-y-5">
-              {dossier.regionalSentiment.map((r) => {
-                const zone = NIGERIA_GEOPOLITICAL_ZONES.find((z) => z.name.startsWith(r.zone));
-                return (
-                  <div key={r.zone} className="pb-5 border-b border-border last:border-b-0 last:pb-0">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className={`${ZONE_CARD_STYLE} text-gold font-semibold`}>
-                        {r.zone}
-                      </span>
-                      <span className="font-mono text-xs font-bold text-foreground">{r.score}</span>
-                    </div>
-                    <SentimentBand score={r.score} />
-                    <p className="font-body text-xs text-foreground/65 mt-2 leading-relaxed">
-                      {r.narrative}
-                    </p>
-                    {zone && (
-                      <p className="font-mono text-[10px] text-foreground/35 mt-1">
-                        States: {zone.states.join(", ")}
-                      </p>
-                    )}
-                  </div>
-                );
-              })}
+              {activeDossier === "fintech"
+                ? "Geopolitical Sentiment Map"
+                : activeDossier === "fmcg"
+                ? "Signal Volume Trend"
+                : "Zone Sentiment Comparison"}
             </div>
 
-            <div className="mt-8 inset-panel p-4">
+            {/* Distinct visualization per dossier */}
+            <div className="mb-6">
+              {activeDossier === "fintech" ? (
+                <ZoneMap dossier={dossier} />
+              ) : activeDossier === "fmcg" ? (
+                <TrendChart dossier={dossier} />
+              ) : (
+                <ZoneBarGraph dossier={dossier} />
+              )}
+            </div>
+
+            {/* Predictive Outlook */}
+            <div className="rounded-xl border border-gold/30 bg-elevated/60 p-4">
+              <div className="flex items-center justify-between mb-2">
+                <span className="font-mono text-[10px] text-gold uppercase tracking-wider">
+                  Predictive Outlook
+                </span>
+                <span className="font-mono text-[10px] text-foreground/60">
+                  {dossier.confidence}% confidence
+                </span>
+              </div>
+              <div className="h-1.5 w-full rounded-full bg-card overflow-hidden mb-3">
+                <div
+                  className="h-full rounded-full bg-gold"
+                  style={{ width: `${dossier.confidence}%` }}
+                />
+              </div>
+              <p className="font-body text-xs text-foreground/80 leading-relaxed">
+                {dossier.outlook}
+              </p>
+            </div>
+
+            <div className="mt-6 inset-panel p-4">
               <div className="font-mono text-[10px] text-gold uppercase tracking-wider mb-2">
                 Prescribed Strategic Action
               </div>

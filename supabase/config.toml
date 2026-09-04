@@ -1,0 +1,18 @@
+# Fozill Supabase configuration.
+# Managed remote project ref: mlkwowgqsjcgslvipyvh
+project_id = "mlkwowgqsjcgslvipyvh"
+
+[db]
+port = 54322
+major_version = 15
+
+[api]
+enabled = true
+port = 54321
+schemas = ["public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db.seed]
+enabled = true
+sql_paths = ["../seed.sql"]
