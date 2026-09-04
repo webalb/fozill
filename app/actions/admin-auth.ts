@@ -31,10 +31,9 @@ export async function requestOtp(
 
   if (!email) return { error: "Enter your admin email." };
 
-  const origin =
-    process.env.NEXT_PUBLIC_SITE_URL || process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000";
+  // Production origin for OTP magic-link redirects. On Vercel set
+  // NEXT_PUBLIC_SITE_URL=https://fozill.com; falls back to the production domain.
+  const origin = process.env.NEXT_PUBLIC_SITE_URL || "https://fozill.com";
 
   const supabase = await createServerSupabase();
   const { error } = await supabase.auth.signInWithOtp({
