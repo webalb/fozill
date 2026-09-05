@@ -78,3 +78,46 @@ export interface IndexReport {
     value: number;
   }[];
 }
+
+export interface IntelligenceSignal {
+  id: string;
+  title: string;
+  body: string;
+  category: "business" | "political" | "economic" | "sector" | "crisis";
+  location?: string | null;
+  direction?: "up" | "down" | "neutral" | null;
+  confidence?: number | null;
+  source?: string | null;
+  status: "draft" | "published" | "archived";
+  premium: boolean;
+  published_at?: string | null;
+  created_at: string;
+  updated_at?: string | null;
+}
+
+export interface PulseItem {
+  id: string;
+  pulse_id: string;
+  title: string;
+  body: string;
+  signal?: string | null;
+  implication?: string | null;
+  recommendation?: string | null;
+  premium: boolean;
+  display_order?: number;
+  created_at: string;
+}
+
+export interface IntelligencePulse {
+  id: string;
+  slug: string;
+  title: string;
+  summary: string;
+  mood_index?: number | null;
+  status: "draft" | "published" | "archived";
+  published_at?: string | null;
+  created_at: string;
+  updated_at?: string | null;
+  pulse_items?: PulseItem[];
+}
+

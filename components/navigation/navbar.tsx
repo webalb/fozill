@@ -22,11 +22,13 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
+    { name: "Live Signals", href: "/signals", badge: "Live" },
     { name: "Live Dossiers", href: "/briefs" },
     { name: "Global Indices", href: "/indices" },
     { name: "Methodology", href: "/about" },
     { name: "Pricing", href: "/pricing" },
   ];
+
 
   return (
     <header
@@ -127,13 +129,16 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`px-3.5 py-2 rounded-md font-heading text-sm font-medium transition-colors ${
+                className={`flex items-center gap-1.5 px-3.5 py-2 rounded-md font-heading text-sm font-medium transition-colors ${
                   pathname === link.href
                     ? "text-gold"
                     : "text-foreground/80 hover:text-foreground hover:bg-surface"
                 }`}
               >
-                {link.name}
+                <span>{link.name}</span>
+                {link.badge && (
+                  <span className="flex h-1.5 w-1.5 rounded-full bg-positive animate-pulse" />
+                )}
               </Link>
             ))}
 
@@ -211,10 +216,15 @@ export function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="block px-3 py-2 rounded-lg font-heading text-sm text-foreground hover:bg-surface"
+                className="flex items-center justify-between px-3 py-2 rounded-lg font-heading text-sm text-foreground hover:bg-surface"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                {link.name}
+                <span>{link.name}</span>
+                {link.badge && (
+                  <span className="px-1.5 py-0.5 rounded text-[10px] font-mono bg-positive/10 text-positive border border-positive/30">
+                    {link.badge}
+                  </span>
+                )}
               </Link>
             ))}
 

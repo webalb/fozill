@@ -117,6 +117,12 @@ export function Footer() {
             </h4>
             <ul className="space-y-2.5 font-heading text-sm text-foreground/70">
               <li>
+                <Link href="/signals" className="hover:text-gold transition-colors flex items-center gap-1.5">
+                  <span>Live Signal Radar</span>
+                  <span className="h-1.5 w-1.5 rounded-full bg-positive animate-pulse" />
+                </Link>
+              </li>
+              <li>
                 <Link href="/briefs" className="hover:text-gold transition-colors">
                   Sample Executive Dossiers
                 </Link>

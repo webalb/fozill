@@ -6,6 +6,10 @@ import { DossierCard } from "@/components/intelligence/dossier-card";
 import { NewsletterForm } from "@/components/forms/newsletter-form";
 import { SAMPLE_DOSSIERS } from "@/lib/data/sample-dossiers";
 import { NIGERIA_GEOPOLITICAL_ZONES } from "@/lib/data/geopolitical-zones";
+import { getLiveTickerSignals } from "@/lib/public-signals";
+
+export const revalidate = 120;
+
 
 const pillars = [
   {
@@ -49,9 +53,11 @@ const pillars = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const liveSignals = await getLiveTickerSignals();
   const fmcgDossier = SAMPLE_DOSSIERS["fmcg"];
   const zones = NIGERIA_GEOPOLITICAL_ZONES;
+
 
   return (
     <div>
@@ -104,7 +110,7 @@ export default function Home() {
         </div>
       </section>
 
-      <SignalTicker />
+      <SignalTicker signals={liveSignals} />
 
       {/* PILLARS */}
       <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
