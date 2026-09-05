@@ -5,6 +5,8 @@ import { Navbar } from "@/components/navigation/navbar";
 import { Footer } from "@/components/navigation/footer";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { PageViewTracker } from "@/components/tracking/page-view-tracker";
+import { PagePreloader } from "@/components/navigation/page-preloader";
+
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -83,6 +85,7 @@ export default function RootLayout({
       </head>
       <body className="bg-background text-foreground font-body antialiased min-h-screen flex flex-col">
         <ThemeProvider>
+          <PagePreloader />
           <Navbar />
           <main className="flex-grow pt-20">{children}</main>
           <Footer />

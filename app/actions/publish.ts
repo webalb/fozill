@@ -131,3 +131,124 @@ export async function addPulseItem(prev: PublishState | null, formData: FormData
   revalidatePath("/admin/pulses");
   return { ok: true, message: "Pulse item added." };
 }
+
+export async function deleteSignal(signalId: string): Promise<PublishState> {
+  try {
+    await requireAdmin();
+  } catch {
+    return { ok: false, message: "Unauthorized." };
+  }
+
+  const { error } = await supabaseAdmin
+    .from("intelligence_signals")
+    .delete()
+    .eq("id", signalId);
+
+  if (error) return { ok: false, message: error.message };
+  revalidatePath("/admin");
+  revalidatePath("/admin/signals");
+  revalidatePath("/signals");
+  revalidatePath("/");
+  return { ok: true, message: "Signal deleted." };
+}
+
+export async function updatePulse(prev: PublishState | null, formData: FormData): Promise<PublishState> {
+  try {
+    await requireAdmin();
+  } catch {
+    return { ok: false, message: "Unauthorized." };
+  }
+
+  const pulseId = formData.get("pulse_id")?.toString() || "";
+  const title = formData.get("title")?.toString() || "";
+  const summary = formData.get("summary")?.toString() || "";
+  const mood = Number(formData.get("mood_index")?.toString() || 50);
+
+  if (!pulseId || !title || !summary) {
+    return { ok: false, message: "Pulse ID, title, and summary are required." };
+  }
+
+  const { error } = await supabaseAdmin
+    .from("intelligence_pulses")
+    .update({ title, summary, mood_index: mood, updated_at: new Date().toISOString() })
+    .eq("id", pulseId);
+
+  if (error) return { ok: false, message: error.message };
+  revalidatePath("/admin/pulses");
+  revalidatePath("/indices");
+  return { ok: true, message: "Pulse updated." };
+}
+
+export async function deletePulse(pulseId: string): Promise<PublishState> {
+  try {
+    await requireAdmin();
+  } catch {
+    return { ok: false, message: "Unauthorized." };
+  }
+
+  const { error } = await supabaseAdmin
+    .from("intelligence_pulses")
+    .delete()
+    .eq("id", pulseId);
+
+  if (error) return { ok: false, message: error.message };
+  revalidatePath("/admin/pulses");
+  revalidatePath("/indices");
+  return { ok: true, message: "Pulse deleted." };
+}
+
+export async function updatePulseItem(prev: PublishState | null, formData: FormData): Promise<PublishState> {
+  try {
+    await requireAdmin();
+  } catch {
+    return { ok: false, message: "Unauthorized." };
+  }
+
+  const itemId = formData.get("item_id")?.toString() || "";
+  const title = formData.get("title")?.toString() || "";
+  const body = formData.get("body")?.toString() || "";
+  const signal = formData.get("signal")?.toString() || null;
+  const implication = formData.get("implication")?.toString() || null;
+  const recommendation = formData.get("recommendation")?.toString() || null;
+  const premium = formData.get("premium") === "on";
+
+  if (!itemId || !title || !body) {
+    return { ok: false, message: "Item ID, title, and body are required." };
+  }
+
+  const { error } = await supabaseAdmin
+    .from("pulse_items")
+    .update({
+      title,
+      body,
+      signal,
+      implication,
+      recommendation,
+      premium,
+    })
+    .eq("id", itemId);
+
+  if (error) return { ok: false, message: error.message };
+  revalidatePath("/admin/pulses");
+  revalidatePath("/indices");
+  return { ok: true, message: "Pulse item updated." };
+}
+
+export async function deletePulseItem(itemId: string): Promise<PublishState> {
+  try {
+    await requireAdmin();
+  } catch {
+    return { ok: false, message: "Unauthorized." };
+  }
+
+  const { error } = await supabaseAdmin
+    .from("pulse_items")
+    .delete()
+    .eq("id", itemId);
+
+  if (error) return { ok: false, message: error.message };
+  revalidatePath("/admin/pulses");
+  revalidatePath("/indices");
+  return { ok: true, message: "Pulse item deleted." };
+}
+
