@@ -1,10 +1,19 @@
 import { NextResponse } from "next/server";
 import { createServerSupabase } from "@/lib/supabase-server";
 
+function sanitizeNextPath(nextParam: string | null): string {
+  if (!nextParam) return "/admin";
+  // Must be a relative path starting with '/' and not a protocol-relative '//' or backslash
+  if (nextParam.startsWith("/") && !nextParam.startsWith("//") && !nextParam.includes("\\")) {
+    return nextParam;
+  }
+  return "/admin";
+}
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const code = searchParams.get("code");
-  const next = searchParams.get("next") ?? "/admin";
+  const next = sanitizeNextPath(searchParams.get("next"));
 
   if (code) {
     const supabase = await createServerSupabase();
@@ -22,3 +31,4 @@ export async function GET(request: Request) {
 
   return NextResponse.redirect(new URL("/admin/login", request.url));
 }
+

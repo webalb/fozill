@@ -26,6 +26,15 @@ export type BriefRequestState = {
   message: string;
 };
 
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 export async function submitBriefRequest(
   _prevState: BriefRequestState | null,
   formData: FormData
@@ -58,27 +67,30 @@ export async function submitBriefRequest(
     if (dbError) throw dbError;
 
     if (isResendConfigured) {
+      const sanitizedOrgHeader = data.organization.replace(/[\r\n]+/g, " ").slice(0, 60);
+
       await resend.emails.send({
         from: "Fozill Intelligence <hello@fozill.com>",
         to: [process.env.FOUNDER_NOTIFICATION_EMAIL ?? ""].filter(Boolean),
-        subject: `[NEW BRIEF REQUEST] ${data.organization} - ${data.category}`,
-        html: `<p><strong>Client:</strong> ${data.fullName} (${data.organization})</p>
-               <p><strong>Email:</strong> ${data.workEmail} | <strong>Phone:</strong> ${data.phone}</p>
-               <p><strong>Category:</strong> ${data.category}</p>
-               <p><strong>Target:</strong> ${data.targetEntity}</p>
-               <p><strong>Engagement:</strong> ${data.engagement}</p>
-               <p><strong>Notes:</strong> ${data.notes || "None"}</p>`,
+        subject: `[NEW BRIEF REQUEST] ${sanitizedOrgHeader} - ${data.category}`,
+        html: `<p><strong>Client:</strong> ${escapeHtml(data.fullName)} (${escapeHtml(data.organization)})</p>
+               <p><strong>Email:</strong> ${escapeHtml(data.workEmail)} | <strong>Phone:</strong> ${escapeHtml(data.phone)}</p>
+               <p><strong>Category:</strong> ${escapeHtml(data.category)}</p>
+               <p><strong>Target:</strong> ${escapeHtml(data.targetEntity)}</p>
+               <p><strong>Engagement:</strong> ${escapeHtml(data.engagement)}</p>
+               <p><strong>Notes:</strong> ${escapeHtml(data.notes || "None")}</p>`,
       });
 
       await resend.emails.send({
         from: "Fozill Intelligence <hello@fozill.com>",
         to: [data.workEmail],
         subject: "Received: Your Strategic Intelligence Brief Request",
-        html: `<p>Dear ${data.fullName},</p>
-               <p>We have received your briefing request regarding <strong>${data.targetEntity}</strong>.</p>
+        html: `<p>Dear ${escapeHtml(data.fullName)},</p>
+               <p>We have received your briefing request regarding <strong>${escapeHtml(data.targetEntity)}</strong>.</p>
                <p>An intelligence analyst is reviewing the scope and will reach out within 4 business hours.</p>`,
       });
     }
+
 
     return {
       success: true,

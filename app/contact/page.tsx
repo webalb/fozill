@@ -25,10 +25,40 @@ const steps = ["Intelligence Focus", "Target & Scope", "Engagement", "Contact"];
 
 export default function ContactPage() {
   const [step, setStep] = useState(0);
+  const [formData, setFormData] = useState({
+    category: "business_brand",
+    targetEntity: "",
+    notes: "",
+    engagement: "adhoc_report",
+    fullName: "",
+    organization: "",
+    workEmail: "",
+    phone: "",
+  });
+  const [stepError, setStepError] = useState("");
   const [state, formAction, pending] = useActionState(submitBriefRequest, initialState);
 
-  const next = () => setStep((s) => Math.min(s + 1, steps.length - 1));
-  const back = () => setStep((s) => Math.max(s - 1, 0));
+  const next = () => {
+    setStepError("");
+    if (step === 0 && !formData.category) {
+      setStepError("Please select a primary intelligence focus.");
+      return;
+    }
+    if (step === 1 && formData.targetEntity.trim().length < 2) {
+      setStepError("Please specify your target entity, brand, or topic (minimum 2 characters).");
+      return;
+    }
+    if (step === 2 && !formData.engagement) {
+      setStepError("Please select an engagement model.");
+      return;
+    }
+    setStep((s) => Math.min(s + 1, steps.length - 1));
+  };
+
+  const back = () => {
+    setStepError("");
+    setStep((s) => Math.max(s - 1, 0));
+  };
 
   return (
     <section className="relative overflow-hidden pt-20 pb-24">
@@ -72,6 +102,12 @@ export default function ContactPage() {
           action={formAction}
           className="rounded-2xl border border-border bg-surface/90 backdrop-blur-md p-8 sm:p-10"
         >
+          {/* Persistent Hidden Inputs for Multi-Step Submission */}
+          <input type="hidden" name="category" value={formData.category} />
+          <input type="hidden" name="targetEntity" value={formData.targetEntity} />
+          <input type="hidden" name="notes" value={formData.notes} />
+          <input type="hidden" name="engagement" value={formData.engagement} />
+
           {/* STEP 0: Focus */}
           {step === 0 && (
             <div className="space-y-4">
@@ -82,13 +118,21 @@ export default function ContactPage() {
                 {categories.map((c) => (
                   <label
                     key={c.value}
-                    className="flex items-center gap-3 px-4 py-3 rounded-lg border border-border bg-elevated/80 cursor-pointer hover:border-gold/50 transition-colors"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg border cursor-pointer transition-colors ${
+                      formData.category === c.value
+                        ? "border-gold bg-gold/10"
+                        : "border-border bg-elevated/80 hover:border-gold/50"
+                    }`}
                   >
                     <input
                       type="radio"
-                      name="category"
+                      name="_step0_category"
                       value={c.value}
-                      required
+                      checked={formData.category === c.value}
+                      onChange={(e) => {
+                        setFormData((prev) => ({ ...prev, category: e.target.value }));
+                        setStepError("");
+                      }}
                       className="accent-gold"
                     />
                     <span className="font-heading text-sm">{c.label}</span>
@@ -106,7 +150,11 @@ export default function ContactPage() {
                   Target entity, brand, or topic
                 </label>
                 <input
-                  name="targetEntity"
+                  value={formData.targetEntity}
+                  onChange={(e) => {
+                    setFormData((prev) => ({ ...prev, targetEntity: e.target.value }));
+                    setStepError("");
+                  }}
                   required
                   placeholder="e.g. Tier-1 dairy brand, 2027 election campaign, affordable housing sector"
                   className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder:text-foreground/40 font-body text-sm focus:outline-none focus:border-gold"
@@ -117,7 +165,8 @@ export default function ContactPage() {
                   Additional context (optional)
                 </label>
                 <textarea
-                  name="notes"
+                  value={formData.notes}
+                  onChange={(e) => setFormData((prev) => ({ ...prev, notes: e.target.value }))}
                   rows={4}
                   placeholder="Competitors, geographies, urgency, anything the analyst should know…"
                   className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder:text-foreground/40 font-body text-sm focus:outline-none focus:border-gold"
@@ -136,13 +185,21 @@ export default function ContactPage() {
                 {engagements.map((e) => (
                   <label
                     key={e.value}
-                    className="flex items-center gap-3 px-4 py-3 rounded-lg border border-border bg-elevated/80 cursor-pointer hover:border-gold/50 transition-colors"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-lg border cursor-pointer transition-colors ${
+                      formData.engagement === e.value
+                        ? "border-gold bg-gold/10"
+                        : "border-border bg-elevated/80 hover:border-gold/50"
+                    }`}
                   >
                     <input
                       type="radio"
-                      name="engagement"
+                      name="_step2_engagement"
                       value={e.value}
-                      required
+                      checked={formData.engagement === e.value}
+                      onChange={(ev) => {
+                        setFormData((prev) => ({ ...prev, engagement: ev.target.value }));
+                        setStepError("");
+                      }}
                       className="accent-gold"
                     />
                     <span className="font-heading text-sm">{e.label}</span>
@@ -163,6 +220,8 @@ export default function ContactPage() {
                   <input
                     name="fullName"
                     required
+                    value={formData.fullName}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, fullName: e.target.value }))}
                     className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder:text-foreground/40 font-body text-sm focus:outline-none focus:border-gold"
                   />
                 </div>
@@ -173,6 +232,8 @@ export default function ContactPage() {
                   <input
                     name="organization"
                     required
+                    value={formData.organization}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, organization: e.target.value }))}
                     className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder:text-foreground/40 font-body text-sm focus:outline-none focus:border-gold"
                   />
                 </div>
@@ -186,6 +247,8 @@ export default function ContactPage() {
                     type="email"
                     name="workEmail"
                     required
+                    value={formData.workEmail}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, workEmail: e.target.value }))}
                     className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder:text-foreground/40 font-body text-sm focus:outline-none focus:border-gold"
                   />
                 </div>
@@ -197,6 +260,8 @@ export default function ContactPage() {
                     name="phone"
                     required
                     placeholder="+234…"
+                    value={formData.phone}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, phone: e.target.value }))}
                     className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground placeholder:text-foreground/40 font-body text-sm focus:outline-none focus:border-gold"
                   />
                 </div>
@@ -209,6 +274,11 @@ export default function ContactPage() {
           )}
 
           <div className="mt-8">
+            {stepError && (
+              <p className="mb-4 font-mono text-xs text-negative" role="alert">
+                {stepError}
+              </p>
+            )}
             <p
               className={`mb-4 font-mono text-xs ${
                 state.success ? "text-positive" : state.message ? "text-negative" : ""

@@ -36,3 +36,8 @@ next-env.d.ts
 # supabase CLI local state (contains connection/linked-project details)
 supabase/.temp/
 supabase_migrations/schema_history
+
+# agent skills
+.agents/
+skills-lock.json
+

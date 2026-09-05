@@ -4,9 +4,9 @@ import { Suspense } from "react";
 import { useActionState, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { requestOtp, verifyOtp } from "@/app/actions/admin-auth";
-import { ADMIN_EMAIL } from "@/lib/admin-email";
 
 const initial: Awaited<ReturnType<typeof requestOtp>> = {};
+
 
 export default function AdminLoginPage() {
   return (
@@ -80,7 +80,7 @@ function AdminLoginForm() {
                 autoFocus
                 defaultValue={emailInput}
                 onChange={(e) => setEmailInput(e.target.value)}
-                placeholder={ADMIN_EMAIL}
+                placeholder="admin@fozill.com"
                 className="w-full px-4 py-3 rounded-lg bg-background border border-border text-foreground font-body text-sm focus:outline-none focus:border-gold mb-4"
               />
 

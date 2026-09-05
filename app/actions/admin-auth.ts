@@ -27,9 +27,20 @@ export async function requestOtp(
   formData: FormData
 ): Promise<AdminAuthState> {
   const email = (formData.get("email")?.toString() || "").trim().toLowerCase();
-  const next = formData.get("next")?.toString() || "/admin";
+  const rawNext = formData.get("next")?.toString() || "/admin";
+  const next = rawNext.startsWith("/") && !rawNext.startsWith("//") && !rawNext.includes("\\")
+    ? rawNext
+    : "/admin";
 
   if (!email) return { error: "Enter your admin email." };
+
+  // Security: Only trigger Supabase OTP dispatch for the configured administrator email.
+  // This stops malicious actors from using Fozill as an unauthenticated email bombing / spam relay.
+  const adminEmailNormalized = ADMIN_EMAIL.trim().toLowerCase();
+  if (email !== adminEmailNormalized) {
+    // Return generic success to prevent email enumeration while declining to dispatch outbound mail.
+    return { ok: true, next };
+  }
 
   // Production origin for OTP magic-link redirects. On Vercel set
   // NEXT_PUBLIC_SITE_URL=https://fozill.com; falls back to the production domain.
@@ -44,7 +55,6 @@ export async function requestOtp(
   });
 
   if (error) {
-    // supabase sends OTP to any email; only the admin is allowed, so surface generic errors.
     return { error: error.message || "Could not send the code. Check your auth settings." };
   }
 
@@ -57,9 +67,17 @@ export async function verifyOtp(
 ): Promise<AdminAuthState> {
   const email = (formData.get("email")?.toString() || "").trim().toLowerCase();
   const token = (formData.get("otp")?.toString() || "").trim();
-  const next = formData.get("next")?.toString() || "/admin";
+  const rawNext = formData.get("next")?.toString() || "/admin";
+  const next = rawNext.startsWith("/") && !rawNext.startsWith("//") && !rawNext.includes("\\")
+    ? rawNext
+    : "/admin";
 
   if (!email || !token) return { error: "Email and code are required." };
+
+  const adminEmailNormalized = ADMIN_EMAIL.trim().toLowerCase();
+  if (email !== adminEmailNormalized) {
+    return { error: "That code is invalid or expired. Try again." };
+  }
 
   const supabase = await createServerSupabase();
   const { error } = await supabase.auth.verifyOtp({ email, token, type: "email" });
@@ -70,6 +88,7 @@ export async function verifyOtp(
 
   return { ok: true, next };
 }
+
 
 export async function logoutAdmin() {
   const supabase = await createServerSupabase();
