@@ -26,12 +26,12 @@ export function AdminTopbar({ onOpenMobileSidebar }: AdminTopbarProps) {
   };
 
   return (
-    <header className="sticky top-0 z-20 h-16 bg-[#0c0e10]/90 backdrop-blur-md border-b border-[#22272d] px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+    <header className="sticky top-0 z-20 h-16 bg-panel/90 backdrop-blur-md border-b border-panel-border px-4 sm:px-6 lg:px-8 flex items-center justify-between">
       {/* Left: Mobile Menu Trigger + Breadcrumb */}
       <div className="flex items-center gap-3">
         <button
           onClick={onOpenMobileSidebar}
-          className="md:hidden p-2 rounded-lg border border-[#22272d] text-foreground/70 hover:text-foreground hover:bg-[#161a1e] transition-colors"
+          className="md:hidden p-2 rounded-lg border border-panel-border text-foreground/70 hover:text-foreground hover:bg-panel-hover transition-colors"
           aria-label="Open sidebar"
         >
           <Menu className="w-5 h-5" />
@@ -62,7 +62,7 @@ export function AdminTopbar({ onOpenMobileSidebar }: AdminTopbarProps) {
           href="/signals"
           target="_blank"
           rel="noreferrer"
-          className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[#22272d] bg-[#14181c] hover:border-gold/40 text-xs font-mono text-foreground/80 hover:text-gold transition-all"
+          className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-panel-border bg-panel-strong hover:border-gold/40 text-xs font-mono text-foreground/80 hover:text-gold transition-all"
         >
           <Globe className="w-3.5 h-3.5 text-gold" />
           <span>Live Feed</span>

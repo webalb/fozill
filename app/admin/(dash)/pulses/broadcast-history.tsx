@@ -95,8 +95,8 @@ export function BroadcastHistory() {
                     <td className="py-3 text-right whitespace-nowrap">
                       <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded font-mono text-[9px] font-bold uppercase tracking-wider ${
                         item.is_simulated
-                          ? "bg-amber-500/15 text-amber-400 border border-amber-500/30"
-                          : "bg-emerald-500/15 text-emerald-400 border border-emerald-500/30"
+                          ? "bg-amber-500/15 text-amber-600 dark:text-amber-400 border border-amber-500/30"
+                          : "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30"
                       }`}>
                         {item.is_simulated ? "Simulated Send" : "Dispatched"}
                       </span>

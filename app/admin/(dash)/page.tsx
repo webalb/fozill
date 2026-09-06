@@ -33,7 +33,7 @@ export default async function AdminOverviewPage() {
       sub: `${counts.newBriefRequests} new leads`,
       icon: FileText,
       href: "/admin/briefs",
-      accent: "text-blue-400",
+      accent: "text-blue-600 dark:text-blue-400",
     },
     {
       label: "Signals Radar",
@@ -41,7 +41,7 @@ export default async function AdminOverviewPage() {
       sub: `${counts.publishedSignals} live on feed`,
       icon: Radio,
       href: "/admin/signals",
-      accent: "text-emerald-400",
+      accent: "text-emerald-600 dark:text-emerald-600 dark:text-emerald-400",
     },
     {
       label: "Fozill Pulses",
@@ -49,7 +49,7 @@ export default async function AdminOverviewPage() {
       sub: "weekly issues drafted/broadcast",
       icon: Zap,
       href: "/admin/pulses",
-      accent: "text-amber-400",
+      accent: "text-amber-600 dark:text-amber-400",
     },
     {
       label: "Platform Visits",
@@ -57,21 +57,21 @@ export default async function AdminOverviewPage() {
       sub: "verified page requests",
       icon: BarChart3,
       href: "/admin/analytics",
-      accent: "text-purple-400",
+      accent: "text-purple-600 dark:text-purple-400",
     },
   ];
 
   return (
     <div className="space-y-8">
       {/* Station Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 rounded-2xl bg-gradient-to-r from-[#121518] via-[#161a1e] to-[#121518] border border-[#23272e]">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 rounded-2xl bg-gradient-to-r from-panel-strong via-panel-hover to-panel-strong border border-panel-border">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <span className="font-mono text-xs text-gold uppercase tracking-widest">
               Executive Console
             </span>
             <span className="w-1 h-1 rounded-full bg-gold"></span>
-            <span className="font-mono text-xs text-emerald-400">All Systems Operational</span>
+            <span className="font-mono text-xs text-emerald-600 dark:text-emerald-400">All Systems Operational</span>
           </div>
           <h2 className="font-heading font-bold text-2xl tracking-tight text-foreground">
             Strategic Operations Command
@@ -91,7 +91,7 @@ export default async function AdminOverviewPage() {
           </Link>
           <Link
             href="/admin/pulses"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-[#181c20] border border-gold/40 text-gold font-mono text-xs hover:bg-gold/10 transition-all"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-panel-strong border border-gold/40 text-gold font-mono text-xs hover:bg-gold/10 transition-all"
           >
             <Send className="w-3.5 h-3.5" />
             <span>Broadcast Issue</span>
@@ -100,7 +100,7 @@ export default async function AdminOverviewPage() {
             href="/signals"
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-[#23272e] bg-[#101316] text-xs font-mono text-foreground/70 hover:text-foreground transition-all"
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg border border-panel-border bg-panel-strong text-xs font-mono text-foreground/70 hover:text-foreground transition-all"
           >
             <Globe className="w-3.5 h-3.5" />
             <span>Public Feed</span>
@@ -194,12 +194,12 @@ export default async function AdminOverviewPage() {
         <div className="rounded-2xl border border-border bg-surface/60 p-6 space-y-4">
           <div className="flex items-center justify-between border-b border-border/60 pb-3">
             <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-400" />
+              <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
               <h3 className="font-heading font-bold text-base text-foreground">
                 Security & Compliance Architecture
               </h3>
             </div>
-            <span className="font-mono text-[10px] text-emerald-400 uppercase tracking-wider">
+            <span className="font-mono text-[10px] text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">
               Enforced
             </span>
           </div>
@@ -207,17 +207,17 @@ export default async function AdminOverviewPage() {
           <ul className="space-y-2.5 text-xs font-mono">
             <li className="flex items-center justify-between p-2 rounded-lg bg-background/50 border border-border/40">
               <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                 <span className="text-foreground/80">Row Level Security (RLS)</span>
               </div>
-              <span className="text-emerald-400 text-[11px]">Strict Policies</span>
+              <span className="text-emerald-600 dark:text-emerald-400 text-[11px]">Strict Policies</span>
             </li>
             <li className="flex items-center justify-between p-2 rounded-lg bg-background/50 border border-border/40">
               <div className="flex items-center gap-2">
-                <Database className="w-3.5 h-3.5 text-emerald-400" />
+                <Database className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                 <span className="text-foreground/80">Supabase DB & Service Role</span>
               </div>
-              <span className="text-emerald-400 text-[11px]">Connected</span>
+              <span className="text-emerald-600 dark:text-emerald-400 text-[11px]">Connected</span>
             </li>
             <li className="flex items-center justify-between p-2 rounded-lg bg-background/50 border border-border/40">
               <div className="flex items-center gap-2">

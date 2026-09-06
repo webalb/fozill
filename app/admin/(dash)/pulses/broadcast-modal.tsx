@@ -87,10 +87,10 @@ export function BroadcastModal({ pulse, isOpen, onClose }: BroadcastModalProps) 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="relative w-full max-w-6xl h-[90vh] bg-[#0c0e10] border border-[#23272e] rounded-2xl shadow-2xl flex flex-col overflow-hidden">
+      <div className="relative w-full max-w-6xl h-[90vh] bg-panel border border-panel-border rounded-2xl shadow-2xl flex flex-col overflow-hidden">
         
         {/* Modal Top Header */}
-        <div className="px-6 py-4 border-b border-[#23272e] bg-[#121518] flex items-center justify-between">
+        <div className="px-6 py-4 border-b border-panel-border bg-panel-strong flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-lg bg-gold/15 border border-gold/30 flex items-center justify-center text-gold">
               <Send className="w-4 h-4" />
@@ -101,7 +101,7 @@ export function BroadcastModal({ pulse, isOpen, onClose }: BroadcastModalProps) 
                   Executive Broadcast Dispatcher
                 </h3>
                 <span className={`px-2 py-0.5 rounded font-mono text-[9px] font-bold uppercase tracking-wider ${
-                  isPublished ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30" : "bg-amber-500/20 text-amber-400 border border-amber-500/30"
+                  isPublished ? "bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30" : "bg-amber-500/20 text-amber-600 dark:text-amber-400 border border-amber-500/30"
                 }`}>
                   {pulse.status}
                 </span>
@@ -114,7 +114,7 @@ export function BroadcastModal({ pulse, isOpen, onClose }: BroadcastModalProps) 
 
           <div className="flex items-center gap-2">
             {/* Viewport switcher */}
-            <div className="hidden sm:flex items-center bg-[#161a1e] border border-[#23272e] rounded-lg p-1">
+            <div className="hidden sm:flex items-center bg-panel-hover border border-panel-border rounded-lg p-1">
               <button
                 onClick={() => setViewMode("desktop")}
                 className={`flex items-center gap-1.5 px-2.5 py-1 rounded text-xs font-mono transition-colors ${
@@ -135,7 +135,7 @@ export function BroadcastModal({ pulse, isOpen, onClose }: BroadcastModalProps) 
 
             <button
               onClick={onClose}
-              className="p-2 rounded-lg border border-[#23272e] text-foreground/60 hover:text-foreground hover:bg-[#161a1e] transition-colors"
+              className="p-2 rounded-lg border border-panel-border text-foreground/60 hover:text-foreground hover:bg-panel-hover transition-colors"
               aria-label="Close modal"
             >
               <X className="w-4 h-4" />
@@ -147,31 +147,31 @@ export function BroadcastModal({ pulse, isOpen, onClose }: BroadcastModalProps) 
         <div className="flex-1 min-h-0 grid grid-cols-1 lg:grid-cols-12 overflow-hidden">
           
           {/* Left Column: Live Email Preview (7 cols on lg) */}
-          <div className="lg:col-span-7 h-full bg-[#08090a] border-r border-[#23272e] flex flex-col items-center justify-start p-4 sm:p-6 overflow-y-auto">
+          <div className="lg:col-span-7 h-full bg-panel-deep border-r border-panel-border flex flex-col items-center justify-start p-4 sm:p-6 overflow-y-auto">
             <div className="w-full flex items-center justify-between mb-3 text-xs font-mono text-foreground/50">
               <span>LIVE INBOX PREVIEW</span>
               <span>Obsidian Executive Styling</span>
             </div>
 
             <div
-              className={`w-full transition-all duration-300 rounded-xl overflow-hidden border border-[#23272e] bg-[#0c0e10] shadow-2xl ${
+              className={`w-full transition-all duration-300 rounded-xl overflow-hidden border border-panel-border bg-panel shadow-2xl ${
                 viewMode === "mobile" ? "max-w-[390px]" : "max-w-[620px]"
               }`}
             >
               <iframe
                 title="Email preview"
                 srcDoc={previewHtml}
-                className="w-full h-[620px] bg-[#0c0e10] border-0"
+                className="w-full h-[620px] bg-panel border-0"
               />
             </div>
           </div>
 
           {/* Right Column: Audience & Dispatch Cockpit (5 cols on lg) */}
-          <div className="lg:col-span-5 h-full bg-[#101316] p-6 flex flex-col justify-between overflow-y-auto space-y-6">
+          <div className="lg:col-span-5 h-full bg-panel-strong p-6 flex flex-col justify-between overflow-y-auto space-y-6">
             
             <div className="space-y-6">
               {/* Audience Statistics Card */}
-              <div className="p-4 rounded-xl border border-[#23272e] bg-[#14181c] space-y-3">
+              <div className="p-4 rounded-xl border border-panel-border bg-panel-strong space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs text-gold uppercase tracking-widest flex items-center gap-1.5">
                     <Users className="w-3.5 h-3.5" /> Target Audience
@@ -179,22 +179,22 @@ export function BroadcastModal({ pulse, isOpen, onClose }: BroadcastModalProps) 
                   {loadingAudience ? (
                     <Loader2 className="w-3.5 h-3.5 animate-spin text-foreground/40" />
                   ) : (
-                    <span className="font-mono text-xs text-emerald-400 font-bold">
+                    <span className="font-mono text-xs text-emerald-600 dark:text-emerald-400 font-bold">
                       {audience?.active ?? 0} ACTIVE
                     </span>
                   )}
                 </div>
 
-                <div className="grid grid-cols-3 gap-2 pt-1 border-t border-[#23272e]">
-                  <div className="p-2 rounded bg-[#0c0e10] border border-[#23272e]/60">
+                <div className="grid grid-cols-3 gap-2 pt-1 border-t border-panel-border">
+                  <div className="p-2 rounded bg-panel border border-panel-border/60">
                     <div className="font-mono text-[10px] text-foreground/40">Total</div>
                     <div className="font-heading font-bold text-sm text-foreground">{audience?.total ?? "—"}</div>
                   </div>
-                  <div className="p-2 rounded bg-[#0c0e10] border border-[#23272e]/60">
+                  <div className="p-2 rounded bg-panel border border-panel-border/60">
                     <div className="font-mono text-[10px] text-foreground/40">Active</div>
-                    <div className="font-heading font-bold text-sm text-emerald-400">{audience?.active ?? "—"}</div>
+                    <div className="font-heading font-bold text-sm text-emerald-600 dark:text-emerald-400">{audience?.active ?? "—"}</div>
                   </div>
-                  <div className="p-2 rounded bg-[#0c0e10] border border-[#23272e]/60">
+                  <div className="p-2 rounded bg-panel border border-panel-border/60">
                     <div className="font-mono text-[10px] text-foreground/40">Unsub</div>
                     <div className="font-heading font-bold text-sm text-foreground/50">{audience?.unsubscribed ?? "—"}</div>
                   </div>
@@ -202,7 +202,7 @@ export function BroadcastModal({ pulse, isOpen, onClose }: BroadcastModalProps) 
               </div>
 
               {/* Test Dispatch Form */}
-              <div className="p-4 rounded-xl border border-[#23272e] bg-[#14181c] space-y-3">
+              <div className="p-4 rounded-xl border border-panel-border bg-panel-strong space-y-3">
                 <div className="flex items-center gap-1.5 font-mono text-xs text-foreground/70 uppercase tracking-wider">
                   <Mail className="w-3.5 h-3.5 text-gold" />
                   <span>Send Test Preview</span>
@@ -219,12 +219,12 @@ export function BroadcastModal({ pulse, isOpen, onClose }: BroadcastModalProps) 
                       value={testEmail}
                       onChange={(e) => setTestEmail(e.target.value)}
                       placeholder="analyst@fozill.com"
-                      className="flex-1 px-3 py-2 rounded-lg bg-[#0c0e10] border border-[#23272e] text-xs font-mono text-foreground focus:outline-none focus:border-gold"
+                      className="flex-1 px-3 py-2 rounded-lg bg-panel border border-panel-border text-xs font-mono text-foreground focus:outline-none focus:border-gold"
                     />
                     <button
                       type="submit"
                       disabled={isTestPending || !testEmail}
-                      className="px-3 py-2 rounded-lg bg-surface border border-[#23272e] hover:border-gold/50 text-foreground text-xs font-mono hover:text-gold transition-colors disabled:opacity-50 shrink-0"
+                      className="px-3 py-2 rounded-lg bg-surface border border-panel-border hover:border-gold/50 text-foreground text-xs font-mono hover:text-gold transition-colors disabled:opacity-50 shrink-0"
                     >
                       {isTestPending ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : "Send Test"}
                     </button>
@@ -233,7 +233,7 @@ export function BroadcastModal({ pulse, isOpen, onClose }: BroadcastModalProps) 
                   {testResult && (
                     <div className={`p-2.5 rounded-lg border text-xs font-mono flex items-start gap-2 ${
                       testResult.success
-                        ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
+                        ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-600 dark:text-emerald-400"
                         : "bg-negative/10 border-negative/30 text-negative"
                     }`}>
                       {testResult.success ? <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" /> : <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />}
@@ -244,14 +244,14 @@ export function BroadcastModal({ pulse, isOpen, onClose }: BroadcastModalProps) 
               </div>
 
               {/* Mass Broadcast Trigger & Safety Gate */}
-              <div className="p-4 rounded-xl border border-[#23272e] bg-[#14181c] space-y-4">
+              <div className="p-4 rounded-xl border border-panel-border bg-panel-strong space-y-4">
                 <div className="flex items-center gap-1.5 font-mono text-xs text-gold uppercase tracking-wider">
                   <Sparkles className="w-3.5 h-3.5 text-gold" />
                   <span>Subscribers Mass Broadcast</span>
                 </div>
 
                 {!isPublished ? (
-                  <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono flex items-start gap-2">
+                  <div className="p-3 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-600 dark:text-amber-400 text-xs font-mono flex items-start gap-2">
                     <ShieldAlert className="w-4 h-4 shrink-0 mt-0.5" />
                     <span>This pulse issue is currently a DRAFT. You must change its status to PUBLISHED before broadcasting to subscribers.</span>
                   </div>
@@ -261,7 +261,7 @@ export function BroadcastModal({ pulse, isOpen, onClose }: BroadcastModalProps) 
                       Dispatching will send this intelligence memorandum via Resend in batches to all <strong className="text-foreground">{audience?.active ?? 0} active subscribers</strong>.
                     </p>
 
-                    <label className="flex items-start gap-2.5 p-3 rounded-lg border border-[#23272e] bg-[#0c0e10] cursor-pointer hover:border-gold/40 transition-colors">
+                    <label className="flex items-start gap-2.5 p-3 rounded-lg border border-panel-border bg-panel cursor-pointer hover:border-gold/40 transition-colors">
                       <input
                         type="checkbox"
                         checked={confirmed}
@@ -294,7 +294,7 @@ export function BroadcastModal({ pulse, isOpen, onClose }: BroadcastModalProps) 
                     {broadcastResult && (
                       <div className={`p-3 rounded-lg border text-xs font-mono flex items-start gap-2 ${
                         broadcastResult.success
-                          ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-400"
+                          ? "bg-emerald-500/10 border-emerald-500/30 text-emerald-600 dark:text-emerald-400"
                           : "bg-negative/10 border-negative/30 text-negative"
                       }`}>
                         {broadcastResult.success ? <CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5" /> : <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />}
@@ -307,11 +307,11 @@ export function BroadcastModal({ pulse, isOpen, onClose }: BroadcastModalProps) 
             </div>
 
             {/* Bottom Dismiss */}
-            <div className="pt-2 border-t border-[#23272e] flex justify-end">
+            <div className="pt-2 border-t border-panel-border flex justify-end">
               <button
                 type="button"
                 onClick={onClose}
-                className="px-4 py-2 rounded-lg border border-[#23272e] bg-surface text-xs font-mono text-foreground/60 hover:text-foreground transition-colors"
+                className="px-4 py-2 rounded-lg border border-panel-border bg-surface text-xs font-mono text-foreground/60 hover:text-foreground transition-colors"
               >
                 Close Console
               </button>

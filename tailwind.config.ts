@@ -19,6 +19,13 @@ const config: Config = {
         border: "rgb(var(--border) / <alpha-value>)",
         footer: "rgb(var(--footer) / <alpha-value>)",
         muted: "rgb(var(--muted) / <alpha-value>)",
+        panel: {
+          DEFAULT: "rgb(var(--panel) / <alpha-value>)",
+          strong: "rgb(var(--panel-strong) / <alpha-value>)",
+          hover: "rgb(var(--panel-hover) / <alpha-value>)",
+          deep: "rgb(var(--panel-deep) / <alpha-value>)",
+          border: "rgb(var(--panel-border) / <alpha-value>)",
+        },
         gold: {
           DEFAULT: "rgb(var(--gold) / <alpha-value>)",
           hover: "rgb(var(--gold-hover) / <alpha-value>)",

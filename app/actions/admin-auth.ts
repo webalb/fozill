@@ -1,5 +1,6 @@
 "use server";
 
+import { cache } from "react";
 import { createServerSupabase } from "@/lib/supabase-server";
 import { ADMIN_EMAIL } from "@/lib/admin-email";
 
@@ -9,8 +10,8 @@ export interface AdminAuthState {
   next?: string;
 }
 
-// Server-side check used by admin pages/actions (middleware does the first gate).
-export async function requireAdmin(): Promise<{ email: string }> {
+// Request-memoized server-side check (eliminates redundant roundtrips in layout & page waterfalls)
+const getCachedAdmin = cache(async (): Promise<{ email: string }> => {
   const supabase = await createServerSupabase();
   const {
     data: { user },
@@ -20,6 +21,10 @@ export async function requireAdmin(): Promise<{ email: string }> {
     throw new Error("Unauthorized");
   }
   return { email: user.email! };
+});
+
+export async function requireAdmin(): Promise<{ email: string }> {
+  return getCachedAdmin();
 }
 
 export async function requestOtp(

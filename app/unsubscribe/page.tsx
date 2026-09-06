@@ -9,7 +9,7 @@ import { subscribeNewsletter } from "@/app/actions/subscribe-newsletter";
 
 export default function UnsubscribePage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#0c0e10]" />}>
+    <Suspense fallback={<div className="min-h-screen bg-background" />}>
       <UnsubscribeContent />
     </Suspense>
   );
@@ -41,10 +41,10 @@ function UnsubscribeContent() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0c0e10] flex items-center justify-center p-4">
-      <div className="max-w-md w-full rounded-2xl border border-[#23272e] bg-[#121518] p-8 shadow-2xl">
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+      <div className="max-w-md w-full rounded-2xl border border-panel-border bg-panel-strong p-8 shadow-2xl">
         {/* Header Logo */}
-        <div className="flex items-center gap-3 mb-6 pb-6 border-b border-[#23272e]">
+        <div className="flex items-center gap-3 mb-6 pb-6 border-b border-panel-border">
           <Image
             src="/logo-navbar.webp"
             alt="Fozill Logo"
@@ -66,7 +66,7 @@ function UnsubscribeContent() {
         {/* State 1: Resubscribed */}
         {resubscribed ? (
           <div className="space-y-4">
-            <div className="flex items-center gap-2.5 text-emerald-400 font-heading font-semibold text-base">
+            <div className="flex items-center gap-2.5 text-emerald-600 dark:text-emerald-400 font-heading font-semibold text-base">
               <CheckCircle2 className="w-5 h-5" />
               <span>Subscription Re-activated</span>
             </div>
@@ -97,7 +97,7 @@ function UnsubscribeContent() {
             </p>
 
             {email && (
-              <div className="pt-4 border-t border-[#23272e]/80 flex flex-col gap-3">
+              <div className="pt-4 border-t border-panel-border/80 flex flex-col gap-3">
                 <p className="font-mono text-[11px] text-foreground/40">
                   Did you click this link accidentally?
                 </p>

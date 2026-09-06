@@ -29,7 +29,7 @@ export async function subscribeNewsletter(
   try {
     const { error: dbError } = await supabaseAdmin.from("newsletter_subscribers").insert({
       email,
-      created_at: new Date().toISOString(),
+      subscribed_at: new Date().toISOString(),
     });
 
     if (dbError) throw dbError;
