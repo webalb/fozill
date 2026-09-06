@@ -1,30 +1,8 @@
 import type { Metadata } from "next";
-import { Manrope, Source_Serif_4, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/navigation/navbar";
-import { Footer } from "@/components/navigation/footer";
 import { ThemeProvider } from "@/components/theme/theme-provider";
-import { PageViewTracker } from "@/components/tracking/page-view-tracker";
 import { PagePreloader } from "@/components/navigation/page-preloader";
-
-
-const manrope = Manrope({
-  subsets: ["latin"],
-  variable: "--font-heading",
-  display: "swap",
-});
-
-const sourceSerif = Source_Serif_4({
-  subsets: ["latin"],
-  variable: "--font-body",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap",
-});
+import { AppChrome } from "@/components/layout/app-chrome";
 
 export const metadata: Metadata = {
   title: "Fozill | Global Strategic Intelligence Platform",
@@ -71,11 +49,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${manrope.variable} ${sourceSerif.variable} ${jetbrainsMono.variable}`}
-      suppressHydrationWarning
-    >
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -86,10 +60,7 @@ export default function RootLayout({
       <body className="bg-background text-foreground font-body antialiased min-h-screen flex flex-col">
         <ThemeProvider>
           <PagePreloader />
-          <Navbar />
-          <main className="flex-grow pt-20">{children}</main>
-          <Footer />
-          <PageViewTracker />
+          <AppChrome>{children}</AppChrome>
         </ThemeProvider>
       </body>
     </html>

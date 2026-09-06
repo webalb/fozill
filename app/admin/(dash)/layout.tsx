@@ -1,9 +1,9 @@
 import Link from "next/link";
 import { requireAdmin } from "@/app/actions/admin-auth";
-import AdminNav from "../admin-nav";
+import { AdminShell } from "@/components/admin/admin-shell";
 
 export const metadata = {
-  title: "Admin · Fozill",
+  title: "Admin Console · Fozill Strategic Intelligence",
 };
 
 export default async function AdminDashboardLayout({ children }: { children: React.ReactNode }) {
@@ -17,7 +17,7 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
   // Middleware already gates; if we get here unauthenticated, fall back to login.
   if (!authed) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-8 text-center">
+      <div className="min-h-screen flex flex-col items-center justify-center gap-4 p-8 text-center bg-background">
         <p className="font-mono text-sm text-foreground/70">Please sign in to continue.</p>
         <Link
           href="/admin/login"
@@ -29,16 +29,5 @@ export default async function AdminDashboardLayout({ children }: { children: Rea
     );
   }
 
-  return (
-    <div className="mx-auto max-w-6xl px-4 py-10">
-      <header className="mb-8">
-        <Link href="/admin" className="font-mono text-xs text-gold uppercase tracking-widest">
-          Fozill Ops Console
-        </Link>
-        <h1 className="font-heading font-bold text-3xl tracking-tight mt-1">Dashboard</h1>
-      </header>
-      <AdminNav />
-      <main className="mt-8">{children}</main>
-    </div>
-  );
+  return <AdminShell>{children}</AdminShell>;
 }

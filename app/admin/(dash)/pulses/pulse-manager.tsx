@@ -10,7 +10,8 @@ import {
   deletePulseItem,
   setPulseStatus,
 } from "@/app/actions/publish";
-import { Edit2, Trash2, X, PlusCircle, ChevronDown, ChevronUp } from "lucide-react";
+import { Edit2, Trash2, X, PlusCircle, ChevronDown, ChevronUp, Send } from "lucide-react";
+import { BroadcastModal } from "./broadcast-modal";
 
 export default function PulseManager({ pulses }: { pulses: any[] }) {
   const [createState, createAction, creating] = useActionState(createPulse, null);
@@ -22,6 +23,7 @@ export default function PulseManager({ pulses }: { pulses: any[] }) {
   const [editingPulse, setEditingPulse] = useState<any | null>(null);
   const [editingItem, setEditingItem] = useState<any | null>(null);
   const [expandedPulseId, setExpandedPulseId] = useState<string | null>(null);
+  const [broadcastPulse, setBroadcastPulse] = useState<any | null>(null);
 
   const statusLabel = (s: string) =>
     s === "published" ? "Published" : s === "archived" ? "Archived" : "Draft";
@@ -184,6 +186,18 @@ export default function PulseManager({ pulses }: { pulses: any[] }) {
                       className="px-3 py-1.5 rounded-lg bg-foreground/10 text-foreground/70 font-mono text-xs hover:bg-foreground/20 transition-all disabled:opacity-50"
                     >
                       Unpublish
+                    </button>
+                  )}
+
+                  {p.status === "published" && (
+                    <button
+                      onClick={() => setBroadcastPulse(p)}
+                      disabled={isPending}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-gold/15 border border-gold/40 text-gold font-mono text-xs font-semibold hover:bg-gold hover:text-background transition-all shadow-[0_0_12px_rgba(216,168,62,0.15)]"
+                      title="Preview and broadcast to subscribers"
+                    >
+                      <Send className="w-3 h-3" />
+                      <span>Broadcast Issue</span>
                     </button>
                   )}
 
@@ -469,6 +483,13 @@ export default function PulseManager({ pulses }: { pulses: any[] }) {
           <p className="font-body text-sm text-foreground/40 py-6 text-center">No pulse issues yet.</p>
         )}
       </div>
+
+      {/* Pillar 2: Broadcast Modal */}
+      <BroadcastModal
+        pulse={broadcastPulse}
+        isOpen={Boolean(broadcastPulse)}
+        onClose={() => setBroadcastPulse(null)}
+      />
     </div>
   );
 }
